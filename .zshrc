@@ -5,8 +5,8 @@ ZSH_THEME="bullet-train"
 BULLETTRAIN_PROMPT_ORDER=(
 	status
     custom
+    time
     dir
-	time
     ruby
 	git
     cmd_exec_time
