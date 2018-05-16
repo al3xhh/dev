@@ -1,5 +1,6 @@
 set runtimepath+=/opt/vim_runtime
 set number
+set t_Co=256
 
 source /opt/vim_runtime/vimrcs/basic.vim
 source /opt/vim_runtime/vimrcs/filetypes.vim
@@ -14,7 +15,7 @@ autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 try
-source /opt/vim_runtime/my_configs.vim
+    source /opt/vim_runtime/my_configs.vim
 catch
 endtry
 
@@ -24,6 +25,10 @@ nnoremap tp :tabp
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_working_path_mode = 0
+let g:ctrlp_prompt_mappings = {
+            \ 'AcceptSelection("e")': [],
+            \ 'AcceptSelection("t")': ['<cr>', '<c-m>'],
+            \ }
 
 let g:NERDTreeWinPos = "left"
-colorscheme deus
+colorscheme ir_black
