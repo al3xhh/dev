@@ -329,6 +329,7 @@ fi
 
 CURRENT_BG='NONE'
 SEGMENT_SEPARATOR=''
+SEGMENT_LEFT=''
 
 # Begin a segment
 # Takes three arguments, background, foreground and text. All of them can be omitted,
@@ -612,6 +613,7 @@ prompt_time() {
 	fi
 }
 
+
 # Status:
 # - was there an error
 # - am I root
@@ -664,13 +666,17 @@ prompt_line_sep() {
 # Entry point
 # ------------------------------------------------------------------------------
 
+RPROMPT='%F{white}$SEGMENT_LEFT$(prompt_time)'
+
 build_prompt() {
 	RETVAL=$?
 		for segment in $BULLETTRAIN_PROMPT_ORDER
-			do
-				prompt_$segment
-					done
-					prompt_end
+            do
+                if [[ $segment != 'time' ]]; then
+				    prompt_$segment
+                fi		 
+            done
+			prompt_end
 }
 
 NEWLINE='
