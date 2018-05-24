@@ -21,6 +21,7 @@ endtry
 
 nnoremap tn :tabn
 nnoremap tp :tabp
+nnoremap tc :tabc
 
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
