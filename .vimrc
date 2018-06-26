@@ -35,4 +35,5 @@ let g:lightline = {
       \ 'colorscheme': 'wombat',
       \ }
 let g:NERDTreeWinPos = "left"
-colorscheme ir_black
+
+colorscheme apprentice
