@@ -10,6 +10,7 @@ Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'scrooloose/nerdtree'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
+Plugin 'ervandew/supertab'
 
 call vundle#end()
 filetype plugin indent on
@@ -40,6 +41,8 @@ nnoremap tn :tabn
 nnoremap tp :tabp
 nnoremap tc :tabc
 
+let g:SuperTabDefaultCompletionType = "context"
+let g:SuperTabContextDefaultCompletionType = "<c-n>"
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_working_path_mode = 0
