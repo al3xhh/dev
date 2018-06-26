@@ -6,12 +6,14 @@ call vundle#begin()
 
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'ntpeters/vim-better-whitespace'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 
 call vundle#end()
 filetype plugin indent on
 
 set runtimepath+=/opt/vim_runtime
-set number
+set number relativenumber
 set t_Co=256
 set mouse=a
 
@@ -47,5 +49,7 @@ let g:lightline = {
       \ 'colorscheme': 'wombat',
       \ }
 let g:NERDTreeWinPos = "left"
+let g:airline_theme='base16'
+let g:strip_whitespace_on_save = 1
 
 colorscheme apprentice
