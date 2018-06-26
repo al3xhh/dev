@@ -1,3 +1,15 @@
+set nocompatible
+filetype off
+
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'ntpeters/vim-better-whitespace'
+
+call vundle#end()
+filetype plugin indent on
+
 set runtimepath+=/opt/vim_runtime
 set number
 set t_Co=256
