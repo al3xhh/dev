@@ -1,6 +1,7 @@
 set runtimepath+=/opt/vim_runtime
 set number
 set t_Co=256
+set mouse=a
 
 source /opt/vim_runtime/vimrcs/basic.vim
 source /opt/vim_runtime/vimrcs/filetypes.vim
@@ -30,6 +31,8 @@ let g:ctrlp_prompt_mappings = {
             \ 'AcceptSelection("e")': [],
             \ 'AcceptSelection("t")': ['<cr>', '<c-m>'],
             \ }
-
+let g:lightline = {
+      \ 'colorscheme': 'wombat',
+      \ }
 let g:NERDTreeWinPos = "left"
 colorscheme ir_black
