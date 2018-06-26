@@ -18,7 +18,6 @@ filetype plugin indent on
 set runtimepath+=/opt/vim_runtime
 set number relativenumber
 set t_Co=256
-set mouse=a
 
 source /opt/vim_runtime/vimrcs/basic.vim
 source /opt/vim_runtime/vimrcs/filetypes.vim
