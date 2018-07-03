@@ -23,7 +23,7 @@ BULLETTRAIN_GIT_CLEAN=""
 DEFAULT_USER=$USER
 source $ZSH/oh-my-zsh.sh
 
-alias ursa='sshuttle --dns -r one@ursa.dacya.ucm.es 10.0.0.0/8 -D'
+alias ursa='sshuttle --dns -r one@ursa.dacya.ucm.es 10.0.0.0/8'
 alias xursa='kill $(pgrep sshuttle) && echo "Disconnected."'
 
 export GOPATH=$HOME/go
