@@ -27,9 +27,6 @@ source /opt/vim_runtime/vimrcs/extended.vim
 autocmd BufEnter * lcd %:p:h
 autocmd BufWinEnter * NERDTreeMirror
 autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 try
     source /opt/vim_runtime/my_configs.vim
@@ -39,6 +36,7 @@ endtry
 nnoremap tn :tabn
 nnoremap tp :tabp
 nnoremap tc :tabc
+noremap <F2> :NERDTreeToggle<CR>
 
 let g:SuperTabDefaultCompletionType = "context"
 let g:SuperTabContextDefaultCompletionType = "<c-n>"
