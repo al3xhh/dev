@@ -36,6 +36,7 @@ nnoremap tn  :tabn<CR>
 nnoremap tp  :tabp<CR>
 nnoremap tc  :tabc<CR>
 noremap <F2> :NERDTreeToggle<CR>
+noremap <F8> :call ToggleNumbers()<CR>
 noremap <F9> :call ToggleMouse()<CR>
 
 set pastetoggle=<F10>
@@ -79,6 +80,11 @@ function! ToggleMouse()
         " enable mouse everywhere
         set mouse=a
     endif
+endfunc
+
+function! ToggleNumbers()
+    set relativenumber!
+    set number!
 endfunc
 
 set t_Co=256
