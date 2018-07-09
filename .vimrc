@@ -17,7 +17,6 @@ filetype plugin indent on
 
 set runtimepath+=/opt/vim_runtime
 set number relativenumber
-set t_Co=256
 
 source /opt/vim_runtime/vimrcs/basic.vim
 source /opt/vim_runtime/vimrcs/filetypes.vim
@@ -50,4 +49,24 @@ let g:NERDTreeWinPos = "left"
 let g:airline_theme='base16'
 let g:strip_whitespace_on_save = 1
 
-colorscheme apprentice
+" Airline tabs plugin:
+" ==================
+let g:airline#extensions#tabline#enabled = 1
+set laststatus=2 "enable airline on start
+
+if !exists('g:airline_symbols')
+let g:airline_symbols = {}
+endif
+
+" powerline symbols
+let g:airline_left_sep = ''
+let g:airline_left_alt_sep = ''
+let g:airline_right_sep = ''
+let g:airline_right_alt_sep = ''
+let g:airline_symbols.branch = ''
+let g:airline_symbols.readonly = ''
+let g:airline_symbols.linenr = ''
+
+set t_Co=256
+set background=dark
+colorscheme gruvbox
