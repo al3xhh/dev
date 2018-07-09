@@ -36,6 +36,9 @@ nnoremap tn  :tabn<CR>
 nnoremap tp  :tabp<CR>
 nnoremap tc  :tabc<CR>
 noremap <F2> :NERDTreeToggle<CR>
+noremap <F9> :call ToggleMouse()<CR>
+
+set pastetoggle=<F10>
 
 let g:SuperTabDefaultCompletionType = "context"
 let g:SuperTabContextDefaultCompletionType = "<c-n>"
@@ -66,6 +69,17 @@ let g:airline_right_alt_sep = ''
 let g:airline_symbols.branch = ''
 let g:airline_symbols.readonly = ''
 let g:airline_symbols.linenr = ''
+
+function! ToggleMouse()
+    " check if mouse is enabled
+    if &mouse == 'a'
+        " disable mouse
+        set mouse=
+    else
+        " enable mouse everywhere
+        set mouse=a
+    endif
+endfunc
 
 set t_Co=256
 set background=dark
