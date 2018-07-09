@@ -33,9 +33,9 @@ try
 catch
 endtry
 
-nnoremap tn :tabn
-nnoremap tp :tabp
-nnoremap tc :tabc
+nnoremap tn  :tabn<CR>
+nnoremap tp  :tabp<CR>
+nnoremap tc  :tabc<CR>
 noremap <F2> :NERDTreeToggle<CR>
 
 let g:SuperTabDefaultCompletionType = "context"
@@ -43,10 +43,6 @@ let g:SuperTabContextDefaultCompletionType = "<c-n>"
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_working_path_mode = 0
-let g:ctrlp_prompt_mappings = {
-            \ 'AcceptSelection("e")': [],
-            \ 'AcceptSelection("t")': ['<cr>', '<c-m>'],
-            \ }
 let g:lightline = {
       \ 'colorscheme': 'wombat',
       \ }
