@@ -18,19 +18,11 @@ filetype plugin indent on
 set runtimepath+=/opt/vim_runtime
 set number relativenumber
 
-source /opt/vim_runtime/vimrcs/basic.vim
-source /opt/vim_runtime/vimrcs/filetypes.vim
 source /opt/vim_runtime/vimrcs/plugins_config.vim
-source /opt/vim_runtime/vimrcs/extended.vim
 
 autocmd BufEnter * lcd %:p:h
 autocmd BufWinEnter * NERDTreeMirror
 autocmd StdinReadPre * let s:std_in=1
-
-try
-    source /opt/vim_runtime/my_configs.vim
-catch
-endtry
 
 nnoremap tn  :tabn<CR>
 nnoremap tp  :tabp<CR>
