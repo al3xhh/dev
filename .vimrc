@@ -17,6 +17,7 @@ filetype plugin indent on
 
 set runtimepath+=/opt/vim_runtime
 set number relativenumber
+set tabstop=4
 
 source /opt/vim_runtime/vimrcs/basic.vim
 source /opt/vim_runtime/vimrcs/filetypes.vim
