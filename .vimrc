@@ -18,6 +18,7 @@ filetype plugin indent on
 set runtimepath+=/opt/vim_runtime
 set number relativenumber
 set softtabstop=4
+set tabstop=2
 set shiftwidth=4
 set expandtab
 
