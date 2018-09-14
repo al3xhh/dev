@@ -35,6 +35,17 @@ noremap <F2> :NERDTreeToggle<CR>
 noremap <F8> :call ToggleNumbers()<CR>
 noremap <F9> :call ToggleMouse()<CR>
 
+" Split windows maps
+" ==================
+
+nnoremap sq <c-w>q<CR>
+nnoremap s_ <c-w>_<CR>
+nnoremap s= <c-w>=<CR>
+nnoremap sa <c-w>h<CR>
+nnoremap sx <c-w>j<CR>
+nnoremap sw <c-w>k<CR>
+nnoremap sd <c-w>l<CR>
+
 set pastetoggle=<F10>
 
 let g:SuperTabDefaultCompletionType = "context"
