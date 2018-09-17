@@ -15,14 +15,12 @@ Plugin 'ervandew/supertab'
 call vundle#end()
 filetype plugin indent on
 
-set runtimepath+=/opt/vim_runtime
+set runtimepath^=~/.vim/bundle/ctrlp.vim
 set number relativenumber
 set softtabstop=4
 set tabstop=2
 set shiftwidth=4
 set expandtab
-
-source /opt/vim_runtime/vimrcs/plugins_config.vim
 
 autocmd BufEnter * lcd %:p:h
 autocmd BufWinEnter * NERDTreeMirror
@@ -97,3 +95,4 @@ endfunc
 set t_Co=256
 set background=dark
 colorscheme gruvbox
+syntax on

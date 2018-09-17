@@ -1,14 +1,14 @@
-export ZSH=/home/alexhh/.oh-my-zsh
+export ZSH=/home/alex/.oh-my-zsh
 
 ZSH_THEME="bullet-train"
 
 BULLETTRAIN_PROMPT_ORDER=(
-	status
+    status
     custom
     time
     dir
     ruby
-	git
+    git
     cmd_exec_time
 )
 
@@ -24,12 +24,14 @@ DEFAULT_USER=$USER
 source $ZSH/oh-my-zsh.sh
 
 alias ursa='sshuttle --dns -r one@ursa.dacya.ucm.es 10.0.0.0/8'
-alias xursa='kill $(pgrep sshuttle) && echo "Disconnected."'
 
 export GOPATH=$HOME/go
 export GOROOT=/usr/local/go
 
 function set_one {
-	export ONE_LOCATION=$PWD
-	export PATH=$PWD/bin:$PATH
+    export ONE_LOCATION=$PWD
+    export PATH=$PWD/bin:$PATH
 }
+
+powerline-daemon -q
+. /usr/lib/python3.7/site-packages/powerline/bindings/zsh/powerline.zsh
