@@ -6,29 +6,9 @@
     path = .vim/bundle/nerdtree
     url = https://github.com/scrooloose/nerdtree
 
-[submodule "supertab"]
-    path = .vim/bundle/supertab
-    url = https://github.com/ervandew/supertab
-
-[submodule "vim-airline-themes"]
-    path = .vim/bundle/vim-airline-themes
-    url = https://github.com/vim-airline/vim-airline-themes
-
-[submodule "vim-fugitive"]
-    path = .vim/bundle/vim-fugitive
-    url = https://github.com/tpope/vim-fugitive
-
 [submodule "lightline.vim"]
     path = .vim/bundle/lightline.vim
     url = https://github.com/itchyny/lightline.vim
-
-[submodule "nerdtree-git-plugin"]
-    path = .vim/bundle/nerdtree-git-plugin
-    url = https://github.com/Xuyuanp/nerdtree-git-plugin
-
-[submodule "vim-airline"]
-    path = .vim/bundle/vim-airline
-    url = https://github.com/vim-airline/vim-airline
 
 [submodule "vim-better-whitespace"]
     path = .vim/bundle/vim-better-whitespace
@@ -37,3 +17,11 @@
 [submodule "Vundle.vim"]
     path = .vim/bundle/Vundle.vim
     url = https://github.com/VundleVim/Vundle.vim
+
+[submodule "vim-buftabline"]
+    path = .vim/bundle/vim-buftabline
+    url = https://github.com/ap/vim-buftabline
+
+[submodule "vim-gitbranch"]
+    path = .vim/bundle/vim-gitbranch
+    url = https://github.com/itchyny/vim-gitbranch
