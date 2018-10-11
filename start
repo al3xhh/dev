@@ -1,0 +1,20 @@
+#!/bin/sh
+
+run="/var/run/one"
+lock="/var/lock/one"
+user="alex"
+
+if [ ! -d $run ]; then mkdir $run; fi
+if [ ! -d $lock ]; then mkdir $lock; fi
+
+chown -R $user:$user $run
+chown -R $user:$user $lock
+
+xinput --disable "ELAN Touchscreen"
+
+xrandr --newmode "2560x1440-40.00" 201.00 2560 2720 2984 3408 1440 1443 1448 1476 +hsync +vsync
+xrandr --addmode HDMI1 2560x1440-40.00
+xrandr --output HDMI1 --mode 2560x1440-40.00 --verbose
+xrandr --output HDMI1 --primary --mode 2560x1440-40.00 --pos 0x0 --rotate normal --output eDP1 --mode 1920x1080 --pos 256x1440 --rotate normal
+
+sudo -H -u alex bash -c 'nitrogen --restore'
