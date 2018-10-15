@@ -1,0 +1,23 @@
+#!/bin/bash
+
+dev_folder='/home/alex/Workspace/dev'
+
+cd ~
+rm -r .vim
+rm -r .oh-my-zsh
+rm .i3status.conf
+rm .vimrc
+rm .zshrc
+rm -r .config/i3
+rm -r .config/kitty
+
+ln -s "$dev_folder/.vim"
+ln -s "$dev_folder/.oh-my-zsh"
+ln -s "$dev_folder/.i3status.conf"
+ln -s "$dev_folder/.vimrc"
+ln -s "$dev_folder/.zshrc"
+
+cd .config
+
+ln -s "$dev_folder/.config/i3"
+ln -s "$dev_folder/.config/kitty"
