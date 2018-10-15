@@ -30,7 +30,10 @@ font pango: M+ 1m, FontAwesome, Ionicons, 10
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec kitty 
+bindsym $mod+Return exec kitty
+
+# start a terminal for raspberry
+bindsym $mod+Shift+Return exec gnome-terminal
 
 # kill focused window
 bindsym $mod+Shift+q kill
