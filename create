@@ -3,6 +3,7 @@
 dev_folder='/home/alex/Workspace/dev'
 
 cd ~
+
 rm -r .vim
 rm -r .oh-my-zsh
 rm .i3status.conf
