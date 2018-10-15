@@ -32,3 +32,6 @@ function set_one {
     export ONE_LOCATION=$PWD
     export PATH=$PWD/bin:$PATH
 }
+wd() {
+  . /home/alex/bin/wd/wd.sh
+}
