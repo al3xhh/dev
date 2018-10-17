@@ -559,7 +559,7 @@ prompt_kctx() {
 			if command -v kubectl > /dev/null 2>&1; then
 				if [[ -f $BULLETTRAIN_KCTX_KCONFIG ]]; then
 					prompt_segment $BULLETTRAIN_KCTX_BG $BULLETTRAIN_KCTX_FG $BULLETTRAIN_KCTX_PREFIX" $(cat $BULLETTRAIN_KCTX_KCONFIG|grep current-context| awk '{print $2}')"
-						fi  
+						fi
 						fi
 }
 
@@ -666,7 +666,7 @@ prompt_line_sep() {
 # Entry point
 # ------------------------------------------------------------------------------
 
-RPROMPT='%F{white}$SEGMENT_LEFT$(prompt_time)'
+RPROMPT='%F{white}'
 
 build_prompt() {
 	RETVAL=$?
@@ -674,7 +674,7 @@ build_prompt() {
             do
                 if [[ $segment != 'time' ]]; then
 				    prompt_$segment
-                fi		 
+                fi
             done
 			prompt_end
 }
