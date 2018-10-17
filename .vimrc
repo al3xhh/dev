@@ -42,6 +42,10 @@ nnoremap sd <c-w>l<CR>
 
 set pastetoggle=<F10>
 
+" Don't mix kitty colors with vim colors
+" ======================================
+let &t_ut=''
+
 let g:SuperTabDefaultCompletionType = "context"
 let g:SuperTabContextDefaultCompletionType = "<c-n>"
 let g:ctrlp_map = '<c-p>'
