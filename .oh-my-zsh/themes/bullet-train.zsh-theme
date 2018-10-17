@@ -412,7 +412,7 @@ prompt_custom() {
 
 			local custom_msg
 			eval custom_msg=$BULLETTRAIN_CUSTOM_MSG
-			[[ -n "🐧${custom_msg}" ]] && prompt_segment $BULLETTRAIN_CUSTOM_BG $BULLETTRAIN_CUSTOM_FG "🐧${custom_msg}"
+			[[ -n "${custom_msg}" ]] && prompt_segment $BULLETTRAIN_CUSTOM_BG $BULLETTRAIN_CUSTOM_FG "${custom_msg}"
 }
 
 # Git

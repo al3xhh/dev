@@ -4,6 +4,7 @@ ZSH_THEME="bullet-train"
 
 BULLETTRAIN_PROMPT_ORDER=(
     status
+    custom
     time
     dir
     ruby
