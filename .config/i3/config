@@ -50,6 +50,9 @@ bindsym $mod+d exec --no-startup-id rofi -show run
 bindsym $mod+Shift+s exec google-chrome-stable --app=https://opennebula.slack.com/
 bindsym $mod+m exec arandr
 
+# move workspace
+bindsym $mod+Shift+m move workspace to output down
+
 # change focus
 bindsym $mod+j focus left
 bindsym $mod+k focus down
