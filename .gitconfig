@@ -2,10 +2,11 @@
 	email = ahuertas@opennebula.systems
 	name = Alejandro Huertas
 [alias]
-    ps = push
-    pl = pull
-    a  = add
-	co = checkout
-	br = branch
-	ci = commit
 	st = status
+	co = checkout
+	ci = commit
+	ps = push
+	pl = pull
+	br = branch
+	df = diff
+	ad = add

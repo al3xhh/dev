@@ -9,12 +9,14 @@ rm -r .oh-my-zsh
 rm .i3status.conf
 rm .vimrc
 rm .zshrc
+rm .gitconfig
 rm -r .config/i3
 rm -r .config/kitty
 
 ln -s "$dev_folder/.vim"
 ln -s "$dev_folder/.oh-my-zsh"
 ln -s "$dev_folder/.i3status.conf"
+ln -s "$dev_folder/.gitconfig"
 ln -s "$dev_folder/.vimrc"
 ln -s "$dev_folder/.zshrc"
 
