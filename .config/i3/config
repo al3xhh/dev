@@ -35,6 +35,9 @@ bindsym $mod+Return exec kitty
 # start a terminal for raspberry
 bindsym $mod+Shift+Return exec gnome-terminal
 
+# start weechat
+bindsym $mod+Shift+w exec kitty -e weechat
+
 # kill focused window
 bindsym $mod+Shift+q kill
 
