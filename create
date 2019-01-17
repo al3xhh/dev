@@ -12,6 +12,7 @@ rm .zshrc
 rm .gitconfig
 rm -r .config/i3
 rm -r .config/kitty
+rm -r .config/terminator
 
 ln -s "$dev_folder/.vim"
 ln -s "$dev_folder/.oh-my-zsh"
@@ -24,3 +25,4 @@ cd .config
 
 ln -s "$dev_folder/.config/i3"
 ln -s "$dev_folder/.config/kitty"
+ln -s "$dev_folder/.conf/terminator"

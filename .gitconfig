@@ -10,3 +10,5 @@
 	br = branch
 	df = diff
 	ad = add
+[alia]
+	sst = status

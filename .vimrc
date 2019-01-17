@@ -52,7 +52,7 @@ let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_working_path_mode = 0
 let g:NERDTreeWinPos = "left"
-let g:strip_whitespace_on_save = 1
+let g:strip_whitespace_on_save = 0
 let g:lightline = {
       \ 'colorscheme': 'wombat',
       \ 'active': {

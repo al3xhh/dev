@@ -1,0 +1,43 @@
+[global_config]
+  broadcast_default = off
+  enabled_plugins = ,
+  focus = system
+  scroll_tabbar = True
+[keybindings]
+[layouts]
+  [[default]]
+    [[[child1]]]
+      parent = window0
+      profile = default
+      type = Terminal
+    [[[window0]]]
+      parent = ""
+      type = Window
+  [[New Layout]]
+    [[[child0]]]
+      fullscreen = False
+      last_active_term = dcc2e744-3aa4-44b3-95f4-d5e5c52a1bee
+      last_active_window = True
+      maximised = False
+      order = 0
+      parent = ""
+      position = 1244:1971
+      size = 735, 455
+      title = alex@alex-pc: ~
+      type = Window
+    [[[terminal1]]]
+      order = 0
+      parent = child0
+      profile = default
+      type = Terminal
+      uuid = dcc2e744-3aa4-44b3-95f4-d5e5c52a1bee
+[plugins]
+[profiles]
+  [[default]]
+    background_color = "#2e3440"
+    cursor_color = "#aaaaaa"
+    foreground_color = "#eeeeec"
+    icon_bell = False
+    palette = "#2e3440:#bf616a:#a3be8c:#ebcb8b:#81a1c1:#75507b:#06989a:#eeeeec:#555753:#bf616a:#a3be8c:#ebcb8b:#729fcf:#ad7fa8:#34e2e2:#eeeeec"
+    scrollbar_position = hidden
+    show_titlebar = False
