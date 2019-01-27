@@ -15,19 +15,24 @@ call vundle#begin()
     Plugin 'itchyny/vim-gitbranch'
     Plugin 'scrooloose/nerdtree'
     Plugin 'ap/vim-buftabline'
+    Plugin 'tpope/vim-fugitive'
+    Plugin 'airblade/vim-gitgutter'
+    Plugin 'junegunn/fzf'
+    Plugin 'junegunn/fzf.vim'
 call vundle#end()
 
 filetype plugin indent on
 
 " Key maps
-" ====================================
-nnoremap tn  :tabn<CR>
-nnoremap tp  :tabp<CR>
-nnoremap tc  :tabc<CR>
-noremap <F2> :NERDTreeToggle<CR>
-noremap <F8> :call ToggleNumbers()<CR>
-noremap <F9> :call ToggleMouse()<CR>
-" ====================================
+" ==========================================
+nnoremap <tab>     :tabn<CR>
+nnoremap <Up><tab> :tabp<CR>
+nnoremap tc        :tabc<CR>
+nnoremap <F2>      :NERDTreeToggle<CR>
+nnoremap <F8>      :call ToggleNumbers()<CR>
+nnoremap <F9>      :call ToggleMouse()<CR>
+nnoremap <c-f>     :Ag<CR>
+" ==========================================
 
 " Split windows maps
 " ====================
@@ -63,6 +68,22 @@ let g:lightline = {
       \   'gitbranch': 'gitbranch#name'
       \ },
       \ }
+
+" Customize fzf colors to match your color scheme
+let g:fzf_colors =
+            \ { 'fg':      ['fg', 'Normal'],
+  \ 'bg':      ['bg', 'Normal'],
+  \ 'hl':      ['fg', 'Comment'],
+  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+  \ 'hl+':     ['fg', 'Statement'],
+  \ 'info':    ['fg', 'PreProc'],
+  \ 'border':  ['fg', 'Ignore'],
+  \ 'prompt':  ['fg', 'Conditional'],
+  \ 'pointer': ['fg', 'Exception'],
+  \ 'marker':  ['fg', 'Keyword'],
+  \ 'spinner': ['fg', 'Label'],
+  \ 'header':  ['fg', 'Comment'] }
 
 " Airline tabs plugin:
 " ==================
