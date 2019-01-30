@@ -6,6 +6,7 @@ set softtabstop=4
 set tabstop=2
 set shiftwidth=4
 set expandtab
+set colorcolumn=80
 
 call vundle#begin()
     Plugin 'VundleVim/Vundle.vim'
