@@ -32,6 +32,7 @@ nnoremap tc        :tabc<CR>
 nnoremap <F2>      :NERDTreeToggle<CR>
 nnoremap <F8>      :call ToggleNumbers()<CR>
 nnoremap <F9>      :call ToggleMouse()<CR>
+nnoremap <F10>     :StripWhitespace<CR>
 nnoremap <c-f>     :Ag<CR>
 " ==========================================
 
