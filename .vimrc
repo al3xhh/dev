@@ -12,7 +12,6 @@ call vundle#begin()
     Plugin 'VundleVim/Vundle.vim'
     Plugin 'kien/ctrlp.vim'
     Plugin 'ntpeters/vim-better-whitespace'
-    Plugin 'itchyny/lightline.vim'
     Plugin 'itchyny/vim-gitbranch'
     Plugin 'scrooloose/nerdtree'
     Plugin 'ap/vim-buftabline'
@@ -20,6 +19,9 @@ call vundle#begin()
     Plugin 'airblade/vim-gitgutter'
     Plugin 'junegunn/fzf'
     Plugin 'junegunn/fzf.vim'
+    Plugin 'ngmy/vim-rubocop'
+    Plugin 'vim-airline/vim-airline'
+    Plugin 'vim-airline/vim-airline-themes'
 call vundle#end()
 
 filetype plugin indent on
@@ -30,6 +32,8 @@ nnoremap <tab>     :tabn<CR>
 nnoremap <Up><tab> :tabp<CR>
 nnoremap tc        :tabc<CR>
 nnoremap <F2>      :NERDTreeToggle<CR>
+nnoremap <F3>      :Gblame<CR>
+nnoremap <F4>      :RuboCop<CR>
 nnoremap <F8>      :call ToggleNumbers()<CR>
 nnoremap <F9>      :call ToggleMouse()<CR>
 nnoremap <F10>     :StripWhitespace<CR>
@@ -52,6 +56,24 @@ set pastetoggle=<F10>
 " Don't mix kitty colors with vim colors
 " ======================================
 let &t_ut=''
+
+let g:airline_theme='deus'
+
+let g:airline#extensions#tabline#enabled = 1
+set laststatus=2 "enable airline on start
+
+if !exists('g:airline_symbols')
+	let g:airline_symbols = {}
+endif
+
+" powerline symbols
+let g:airline_left_sep = ''
+let g:airline_left_alt_sep = ''
+let g:airline_right_sep = ''
+let g:airline_right_alt_sep = ''
+let g:airline_symbols.branch = ''
+let g:airline_symbols.readonly = ''
+let g:airline_symbols.linenr = ''
 
 let g:SuperTabDefaultCompletionType = "context"
 let g:SuperTabContextDefaultCompletionType = "<c-n>"
