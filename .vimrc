@@ -2,10 +2,12 @@ set nocompatible
 set rtp+=~/.vim/bundle/Vundle.vim
 set runtimepath^=~/.vim/bundle/ctrlp.vim
 set number
-set softtabstop=4
-set tabstop=2
-set shiftwidth=4
-set expandtab
+" set softtabstop=4
+" set tabstop=4
+" set shiftwidth=4
+" set expandtab
+" set shiftwidth=4
+set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
 set colorcolumn=80
 
 call vundle#begin()
@@ -34,9 +36,9 @@ nnoremap tc        :tabc<CR>
 nnoremap <F2>      :NERDTreeToggle<CR>
 nnoremap <F3>      :Gblame<CR>
 nnoremap <F4>      :RuboCop<CR>
-nnoremap <F8>      :call ToggleNumbers()<CR>
-nnoremap <F9>      :call ToggleMouse()<CR>
-nnoremap <F10>     :StripWhitespace<CR>
+nnoremap <F5>      :call ToggleNumbers()<CR>
+nnoremap <F6>      :call ToggleMouse()<CR>
+nnoremap <F7>      :StripWhitespace<CR>
 nnoremap <c-f>     :Ag<CR>
 " ==========================================
 
@@ -51,7 +53,7 @@ nnoremap sw <c-w>k<CR>
 nnoremap sd <c-w>l<CR>
 " ====================
 
-set pastetoggle=<F10>
+set pastetoggle=<F8>
 
 " Don't mix kitty colors with vim colors
 " ======================================
@@ -108,10 +110,6 @@ let g:fzf_colors =
   \ 'marker':  ['fg', 'Keyword'],
   \ 'spinner': ['fg', 'Label'],
   \ 'header':  ['fg', 'Comment'] }
-
-" Airline tabs plugin:
-" ==================
-set laststatus=2 "enable airline on start
 
 function! ToggleMouse()
     " check if mouse is enabled
