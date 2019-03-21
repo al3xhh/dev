@@ -1,8 +1,10 @@
 [global_config]
+  borderless = True
   broadcast_default = off
-  enabled_plugins = ,
+  enabled_plugins = LaunchpadCodeURLHandler, APTURLHandler, LaunchpadBugURLHandler
   focus = system
-  scroll_tabbar = True
+  handle_size = 0
+  title_hide_sizetext = True
 [keybindings]
 [layouts]
   [[default]]
@@ -37,7 +39,6 @@
     background_color = "#2e3440"
     cursor_color = "#aaaaaa"
     foreground_color = "#eeeeec"
-    icon_bell = False
     palette = "#2e3440:#bf616a:#a3be8c:#ebcb8b:#81a1c1:#75507b:#06989a:#eeeeec:#555753:#bf616a:#a3be8c:#ebcb8b:#729fcf:#ad7fa8:#34e2e2:#eeeeec"
     scrollbar_position = hidden
     show_titlebar = False

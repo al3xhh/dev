@@ -1,6 +1,7 @@
 [user]
 	email = ahuertas@opennebula.systems
 	name = Alejandro Huertas
+	signingkey = 5DCCF28D76C231FD
 [alias]
 	st = status
 	co = checkout
@@ -12,3 +13,5 @@
 	ad = add
 [alia]
 	sst = status
+[commit]
+	gpgsign = true

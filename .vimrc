@@ -1,13 +1,19 @@
 set nocompatible
+syntax enable
 set rtp+=~/.vim/bundle/Vundle.vim
 set runtimepath^=~/.vim/bundle/ctrlp.vim
 set number
-" set softtabstop=4
-" set tabstop=4
-" set shiftwidth=4
-" set expandtab
-" set shiftwidth=4
-set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
+set nowrap
+set tabstop=4
+set smarttab
+set tags=tags
+set softtabstop=4
+set expandtab
+set shiftwidth=4
+set shiftround
+set backspace=indent,eol,start
+set autoindent
+set copyindent
 set colorcolumn=80
 
 call vundle#begin()
@@ -16,7 +22,6 @@ call vundle#begin()
     Plugin 'ntpeters/vim-better-whitespace'
     Plugin 'itchyny/vim-gitbranch'
     Plugin 'scrooloose/nerdtree'
-    Plugin 'ap/vim-buftabline'
     Plugin 'tpope/vim-fugitive'
     Plugin 'airblade/vim-gitgutter'
     Plugin 'junegunn/fzf'
@@ -26,43 +31,35 @@ call vundle#begin()
     Plugin 'vim-airline/vim-airline-themes'
 call vundle#end()
 
-filetype plugin indent on
-
 " Key maps
 " ==========================================
-nnoremap <tab>     :tabn<CR>
-nnoremap <Up><tab> :tabp<CR>
-nnoremap tc        :tabc<CR>
-nnoremap <F2>      :NERDTreeToggle<CR>
-nnoremap <F3>      :Gblame<CR>
-nnoremap <F4>      :RuboCop<CR>
-nnoremap <F5>      :call ToggleNumbers()<CR>
-nnoremap <F6>      :call ToggleMouse()<CR>
-nnoremap <F7>      :StripWhitespace<CR>
-nnoremap <c-f>     :Ag<CR>
+nnoremap <tab>       :bn<CR>
+nnoremap <Up><tab>   :bp<CR>
+nnoremap <Down><tab> :bc<CR>
+nnoremap <F2>        :NERDTreeToggle<CR>
+nnoremap <F3>        :Gblame<CR>
+nnoremap <F4>        :RuboCop<CR>
+nnoremap <F5>        :call ToggleNumbers()<CR>
+nnoremap <F6>        :call ToggleMouse()<CR>
+nnoremap <F7>        :StripWhitespace<CR>
+nnoremap <c-f>       :Ag<CR>
 " ==========================================
 
-" Split windows maps
-" ====================
-nnoremap sq <c-w>q<CR>
-nnoremap s_ <c-w>_<CR>
-nnoremap s= <c-w>=<CR>
-nnoremap sa <c-w>h<CR>
-nnoremap sx <c-w>j<CR>
-nnoremap sw <c-w>k<CR>
-nnoremap sd <c-w>l<CR>
-" ====================
+" Disable arrow keys
+"===========================================
+noremap <Up>    <NOP>
+noremap <Down>  <NOP>
+noremap <Left>  <NOP>
+noremap <Right> <NOP>
 
-set pastetoggle=<F8>
+set pastetoggle =<F8>
 
-" Don't mix kitty colors with vim colors
-" ======================================
-let &t_ut=''
-
-let g:airline_theme='deus'
+" Vim Airline
+" ==========================================
 
 let g:airline#extensions#tabline#enabled = 1
-set laststatus=2 "enable airline on start
+let g:airline_theme='base16'
+set laststatus=2
 
 if !exists('g:airline_symbols')
 	let g:airline_symbols = {}
@@ -70,7 +67,10 @@ endif
 
 " powerline symbols
 let g:airline_left_sep = ''
+let g:airline#extensions#tabline#left_sep = ''
 let g:airline_left_alt_sep = ''
+let g:airline#extensions#tabline#left_alt_sep = ''
+let g:airline_left_sep = ''
 let g:airline_right_sep = ''
 let g:airline_right_alt_sep = ''
 let g:airline_symbols.branch = ''
@@ -84,32 +84,6 @@ let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_working_path_mode = 0
 let g:NERDTreeWinPos = "left"
 let g:strip_whitespace_on_save = 0
-let g:lightline = {
-      \ 'colorscheme': 'wombat',
-      \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
-      \ },
-      \ 'component_function': {
-      \   'gitbranch': 'gitbranch#name'
-      \ },
-      \ }
-
-" Customize fzf colors to match your color scheme
-let g:fzf_colors =
-            \ { 'fg':      ['fg', 'Normal'],
-  \ 'bg':      ['bg', 'Normal'],
-  \ 'hl':      ['fg', 'Comment'],
-  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
-  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
-  \ 'hl+':     ['fg', 'Statement'],
-  \ 'info':    ['fg', 'PreProc'],
-  \ 'border':  ['fg', 'Ignore'],
-  \ 'prompt':  ['fg', 'Conditional'],
-  \ 'pointer': ['fg', 'Exception'],
-  \ 'marker':  ['fg', 'Keyword'],
-  \ 'spinner': ['fg', 'Label'],
-  \ 'header':  ['fg', 'Comment'] }
 
 function! ToggleMouse()
     " check if mouse is enabled
@@ -126,10 +100,6 @@ function! ToggleNumbers()
     set number!
 endfunc
 
-if !has('gui_running')
-    set t_Co=256
-endif
-
 set background=dark
+set t_Co=256
 colorscheme gruvbox
-syntax on
