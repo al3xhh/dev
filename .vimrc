@@ -47,10 +47,10 @@ nnoremap <c-f>       :Ag<CR>
 
 " Disable arrow keys
 "===========================================
-noremap <Up>    <NOP>
-noremap <Down>  <NOP>
-noremap <Left>  <NOP>
-noremap <Right> <NOP>
+"noremap <Up>    <NOP>
+"noremap <Down>  <NOP>
+"noremap <Left>  <NOP>
+"noremap <Right> <NOP>
 
 set pastetoggle =<F8>
 

@@ -29,3 +29,6 @@ ln -s "$dev_folder/.conf/terminator"
 
 echo "Install FZF"
 echo "Install AG"
+echo "zsh-syntax-highlighting"
+echo "nnn"
+echo "tig"

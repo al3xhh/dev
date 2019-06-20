@@ -52,6 +52,7 @@ bindsym $mod+d exec --no-startup-id rofi -show run
 # apps
 bindsym $mod+Shift+s exec google-chrome-stable --app=https://opennebula.slack.com/
 bindsym $mod+m exec arandr
+bindsym $mod+b exec vivaldi-stable
 
 # move workspace
 bindsym $mod+Shift+m move workspace to output down

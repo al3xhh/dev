@@ -86,17 +86,17 @@ let s:is_dark=(&background == 'dark')
 let s:gb = {}
 
 " fill it with absolute colors
-let s:gb.dark0_hard  = ['#1d2021', 234]     " 29-32-33
-let s:gb.dark0       = ['#282828', 235]     " 40-40-40
-let s:gb.dark0_soft  = ['#32302f', 236]     " 50-48-47
-let s:gb.dark1       = ['#3c3836', 237]     " 60-56-54
-let s:gb.dark2       = ['#504945', 239]     " 80-73-69
-let s:gb.dark3       = ['#665c54', 241]     " 102-92-84
-let s:gb.dark4       = ['#7c6f64', 243]     " 124-111-100
-let s:gb.dark4_256   = ['#7c6f64', 243]     " 124-111-100
+let s:gb.dark0_hard  = ['#000000', 234]     " 29-32-33
+let s:gb.dark0       = ['#000000', 235]     " 40-40-40
+let s:gb.dark0_soft  = ['#000000', 236]     " 50-48-47
+let s:gb.dark1       = ['#000000', 237]     " 60-56-54
+let s:gb.dark2       = ['#000000', 239]     " 80-73-69
+let s:gb.dark3       = ['#000000', 241]     " 102-92-84
+let s:gb.dark4       = ['#000000', 243]     " 124-111-100
+let s:gb.dark4_256   = ['#000000', 243]     " 124-111-100
 
-let s:gb.gray_245    = ['#928374', 245]     " 146-131-116
-let s:gb.gray_244    = ['#928374', 244]     " 146-131-116
+let s:gb.gray_245    = ['#000000', 245]     " 146-131-116
+let s:gb.gray_244    = ['#000000', 244]     " 146-131-116
 
 let s:gb.light0_hard = ['#f9f5d7', 230]     " 249-245-215
 let s:gb.light0      = ['#fbf1c7', 229]     " 253-244-193
