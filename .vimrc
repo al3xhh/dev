@@ -15,6 +15,7 @@ set backspace=indent,eol,start
 set autoindent
 set copyindent
 set colorcolumn=80
+se nostartofline
 
 call vundle#begin()
     Plugin 'VundleVim/Vundle.vim'
@@ -29,6 +30,8 @@ call vundle#begin()
     Plugin 'ngmy/vim-rubocop'
     Plugin 'vim-airline/vim-airline'
     Plugin 'vim-airline/vim-airline-themes'
+    Plugin 'chriskempson/base16-vim'
+    Plugin 'arcticicestudio/nord-vim'
 call vundle#end()
 
 " Key maps
@@ -100,6 +103,8 @@ function! ToggleNumbers()
     set number!
 endfunc
 
+let base16colorspace=256  " Access colors present in 256 colorspace
 set background=dark
 set t_Co=256
-colorscheme gruvbox
+set termguicolors
+colorscheme base16-tomorrow-night

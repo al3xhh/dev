@@ -40,4 +40,5 @@ function set_one {
 wd() {
   . /home/alex/bin/wd/wd.sh
 }
+
 source /home/alex/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
