@@ -5,6 +5,7 @@
 [alias]
 	st = status
 	co = checkout
+	cp = cherry-pick
 	ci = commit
 	ps = push
 	pl = pull
