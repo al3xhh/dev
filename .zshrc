@@ -1,4 +1,4 @@
-export ZSH=/home/alex/.oh-my-zsh
+export ZSH=/home/carlos/.oh-my-zsh
 
 plugins=(colorize)
 
@@ -38,7 +38,7 @@ function set_one {
 }
 
 wd() {
-  . /home/alex/bin/wd/wd.sh
+  . /home/carlos/bin/wd/wd.sh
 }
 
-source /home/alex/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /home/carlos/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
