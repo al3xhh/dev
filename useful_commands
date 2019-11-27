@@ -1,5 +1,6 @@
 nmcli dev wifi
 nmcli dev wifi connect
+nmcli connection import type openvpn file /path/to/your.ovpn
 alsamixer
 nautilus
 ranger
