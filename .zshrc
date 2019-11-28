@@ -1,6 +1,6 @@
 export ZSH=/home/carlos/.oh-my-zsh
 
-plugins=(colorize)
+plugins=(colorize ssh-agent)
 
 ZSH_THEME="bullet-train"
 
