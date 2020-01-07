@@ -32,6 +32,7 @@ call vundle#begin()
     Plugin 'vim-airline/vim-airline-themes'
     Plugin 'chriskempson/base16-vim'
     Plugin 'arcticicestudio/nord-vim'
+    Plugin 'dense-analysis/ale'
 call vundle#end()
 
 " Key maps
