@@ -89,6 +89,8 @@ let g:ctrlp_working_path_mode = 0
 let g:NERDTreeWinPos = "left"
 let g:strip_whitespace_on_save = 0
 
+let g:ale_set_highlights = "ALEErrorLine"
+
 function! ToggleMouse()
     " check if mouse is enabled
     if &mouse == 'a'
