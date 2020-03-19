@@ -53,3 +53,23 @@
 [submodule "vim-airline-themes"]
     path = vim/.vim/bundle/vim-airline-themes
     url  = https://github.com/vim-airline/vim-airline-themes
+
+[submodule "ale"]
+    path = vim/.vim/bundle/ale
+    url  = https://github.com/dense-analysis/ale
+
+[submodule "base16-vim"]
+    path = vim/.vim/bundle/base16-vim
+    url  = https://github.com/chriskempson/base16-vim
+
+[submodule "nerdcommenter"]
+    path = vim/.vim/bundle/nerdcommenter
+    url  = https://github.com/preservim/nerdcommenter
+
+[submodule "nord-vim"]
+    path = vim/.vim/bundle/nord-vim
+    url  = https://github.com/arcticicestudio/nord-vim
+
+[submodule "vim-multiple-cursors"]
+    path = vim/.vim/vim-multiple-cursors
+    url  = https://github.com/terryma/vim-multiple-cursors
