@@ -71,5 +71,5 @@
     url  = https://github.com/arcticicestudio/nord-vim
 
 [submodule "vim-multiple-cursors"]
-    path = vim/.vim/vim-multiple-cursors
+    path = vim/.vim/bundle/vim-multiple-cursors
     url  = https://github.com/terryma/vim-multiple-cursors
