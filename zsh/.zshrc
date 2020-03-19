@@ -30,7 +30,8 @@ alias ursa='sshuttle --dns -r one@ursa.dacya.ucm.es 10.0.0.0/8'
 export GOPATH=$HOME/go
 export EDITOR=vim
 
-PATH="$PATH:$(ruby -e 'print Gem.user_dir')/bin"
+# PATH="$PATH:$(ruby -e 'print Gem.user_dir')/bin"
+export PATH="$HOME/.cargo/bin:$PATH"
 
 function set_one {
     export ONE_LOCATION=$PWD

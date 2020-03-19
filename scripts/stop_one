@@ -1,0 +1,6 @@
+#!/bin/bash
+
+one stop
+sunstone-server stop
+oneflow-server stop
+onegate-server stop

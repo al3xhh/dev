@@ -1,5 +1,0 @@
-nmcli dev wifi
-nmcli dev wifi connect
-alsamixer
-nautilus
-ranger
