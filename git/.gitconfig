@@ -1,7 +1,7 @@
 [user]
 	email = ahuertas@opennebula.systems
 	name = Alejandro Huertas
-	signingkey = D827909F3D0DBDD4D9A1DCA84079E5D6AEFA09E1
+	signingkey = 90361512274A9488D4831C578A6C10664E6EF2A5
 [alias]
 	st = status
 	co = checkout
