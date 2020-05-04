@@ -18,6 +18,13 @@ config_symbolic_links() {
 }
 
 
+FILES=".gitconfig \
+       .i3status.conf \
+       .vim \
+       .vimrc \
+       .oh-my-zsh \
+       .zshrc"
+
 DEV_FOLDER=$1
 
 # Config files in home folder
@@ -47,10 +54,10 @@ done
 
 # Make symbolic links to dev folder
 ###################################
-symbolic_links $GIT_FILES $DEV_FOLDER "git"
-symbolic_links $I3_FILES $DEV_FOLDER "i3"
-symbolic_links $VIM_FILES $DEV_FOLDER "vim"
-symbolic_links $ZSH_FILES $DEV_FOLDER "zsh"
+symbolic_links "$GIT_FILES" "$DEV_FOLDER" "git"
+symbolic_links "$I3_FILES" "$DEV_FOLDER" "i3"
+symbolic_links "$VIM_FILES" "$DEV_FOLDER" "vim"
+symbolic_links "$ZSH_FILES" "$DEV_FOLDER" "zsh"
 
 # ~/.CONFIG FOLDER
 ##################
