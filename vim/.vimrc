@@ -113,5 +113,4 @@ set background=dark
 set t_Co=256
 set termguicolors
 set ignorecase
-filetype plugin on
 colorscheme base16-tomorrow-night
