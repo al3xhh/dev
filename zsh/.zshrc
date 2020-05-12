@@ -43,3 +43,5 @@ wd() {
 }
 
 source /home/alex/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+curl -s wttr.in | head -7 | tail -5
