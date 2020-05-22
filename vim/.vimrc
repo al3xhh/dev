@@ -15,7 +15,8 @@ set backspace=indent,eol,start
 set autoindent
 set copyindent
 set colorcolumn=80
-se nostartofline
+set nostartofline
+set spell spelllang=en_us
 
 call vundle#begin()
     Plugin 'VundleVim/Vundle.vim'
@@ -48,6 +49,7 @@ nnoremap <F4>        :RuboCop<CR>
 nnoremap <F5>        :call ToggleNumbers()<CR>
 nnoremap <F6>        :call ToggleMouse()<CR>
 nnoremap <F7>        :StripWhitespace<CR>
+nnoremap <F8>        :set nospell!<CR>
 nnoremap <c-f>       :Ag<CR>
 " ==========================================
 
