@@ -115,4 +115,5 @@ set background=dark
 set t_Co=256
 set termguicolors
 set ignorecase
+set nospell!
 colorscheme base16-tomorrow-night

@@ -32,6 +32,7 @@ export EDITOR=vim
 
 # PATH="$PATH:$(ruby -e 'print Gem.user_dir')/bin"
 export PATH="$HOME/.cargo/bin:$PATH"
+export PATH="$PATH:/home/alex/.gem/ruby/2.7.0/bin"
 
 function set_one {
     export ONE_LOCATION=$PWD
@@ -44,4 +45,9 @@ wd() {
 
 source /home/alex/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-curl -s wttr.in | head -7 | tail -5
+# OpenNebula autocomplete
+autoload bashcompinit
+bashcompinit
+source /etc/bash_completion.d/one
+
+#curl -s wttr.in | head -7 | tail -5
