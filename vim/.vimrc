@@ -19,23 +19,23 @@ set nostartofline
 set spell spelllang=en_us
 
 call vundle#begin()
-    Plugin 'VundleVim/Vundle.vim'
+    Plugin 'dense-analysis/ale'
+    Plugin 'chriskempson/base16-vim'
     Plugin 'kien/ctrlp.vim'
-    Plugin 'ntpeters/vim-better-whitespace'
-    Plugin 'itchyny/vim-gitbranch'
-    Plugin 'scrooloose/nerdtree'
-    Plugin 'tpope/vim-fugitive'
-    Plugin 'airblade/vim-gitgutter'
     Plugin 'junegunn/fzf'
     Plugin 'junegunn/fzf.vim'
-    Plugin 'ngmy/vim-rubocop'
+    Plugin 'scrooloose/nerdtree'
+    Plugin 'arcticicestudio/nord-vim'
     Plugin 'vim-airline/vim-airline'
     Plugin 'vim-airline/vim-airline-themes'
-    Plugin 'chriskempson/base16-vim'
-    Plugin 'arcticicestudio/nord-vim'
-    Plugin 'dense-analysis/ale'
+    Plugin 'ntpeters/vim-better-whitespace'
+    Plugin 'tpope/vim-fugitive'
+    Plugin 'itchyny/vim-gitbranch'
+    Plugin 'airblade/vim-gitgutter'
     Plugin 'terryma/vim-multiple-cursors'
-    Plugin 'preservim/nerdcommenter'
+    Plugin 'ngmy/vim-rubocop'
+    Plugin 'tpope/vim-surround'
+    Plugin 'VundleVim/Vundle.vim'
 call vundle#end()
 
 " Key maps
@@ -109,6 +109,10 @@ endfunc
 function! ToggleNumbers()
     set number!
 endfunc
+
+if has("autocmd")
+  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+endif
 
 let base16colorspace=256  " Access colors present in 256 colorspace
 set background=dark

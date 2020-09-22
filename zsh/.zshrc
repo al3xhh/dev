@@ -26,6 +26,7 @@ DEFAULT_USER=$USER
 source $ZSH/oh-my-zsh.sh
 
 alias ursa='sshuttle --dns -r one@ursa.dacya.ucm.es 10.0.0.0/8'
+alias tf='terraform'
 
 export GOPATH=$HOME/go
 export EDITOR=vim
@@ -45,9 +46,5 @@ wd() {
 
 source /home/alex/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-# OpenNebula autocomplete
-autoload bashcompinit
-bashcompinit
-source /etc/bash_completion.d/one
-
-#curl -s wttr.in | head -7 | tail -5
+autoload -U +X bashcompinit && bashcompinit
+complete -o nospace -C /usr/bin/terraform terraform
