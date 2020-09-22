@@ -20,6 +20,7 @@ set spell spelllang=en_us
 
 call vundle#begin()
     Plugin 'dense-analysis/ale'
+    Plugin 'jiangmiao/auto-pairs'
     Plugin 'chriskempson/base16-vim'
     Plugin 'kien/ctrlp.vim'
     Plugin 'junegunn/fzf'
