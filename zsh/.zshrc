@@ -27,6 +27,9 @@ source $ZSH/oh-my-zsh.sh
 
 alias ursa='sshuttle --dns -r one@ursa.dacya.ucm.es 10.0.0.0/8'
 alias tf='terraform'
+alias pd='oneprovider'
+alias pt='oneprovision-template'
+alias pr='oneprovision'
 
 export GOPATH=$HOME/go
 export EDITOR=vim
