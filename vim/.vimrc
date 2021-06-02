@@ -66,6 +66,8 @@ set pastetoggle =<F8>
 " Vim Airline
 " ==========================================
 
+let g:airline#extensions#tabline#fnamemod = ':.'
+let g:airline#extensions#tabline#fnamecollapse = 0
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_theme='base16'
 set laststatus=2

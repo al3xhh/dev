@@ -1,3 +1,5 @@
+[pull]
+  rebase = true
 [user]
 	email = ahuertas@opennebula.io
 	name = Alejandro Huertas
