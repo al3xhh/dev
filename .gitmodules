@@ -1,71 +1,89 @@
 [submodule "ale"]
-    path = vim/.vim/bundle/ale
-    url  = https://github.com/dense-analysis/ale
+    path   = vim/.vim/bundle/ale
+    url    = https://github.com/dense-analysis/ale
+    branch = master
 
 [submodule "auto-pairs"]
-    path = vim/.vim/bundle/auto-pairs
-    url  = https://github.com/jiangmiao/auto-pairs
+    path   = vim/.vim/bundle/auto-pairs
+    url    = https://github.com/jiangmiao/auto-pairs
+    branch = master
 
 [submodule "base16-vim"]
-    path = vim/.vim/bundle/base16-vim
-    url  = https://github.com/chriskempson/base16-vim
+    path   = vim/.vim/bundle/base16-vim
+    url    = https://github.com/chriskempson/base16-vim
+    branch = master
 
 [submodule "ctrlp.vim"]
-    path = vim/.vim/bundle/ctrlp.vim
-    url  = https://github.com/kien/ctrlp.vim
+    path   = vim/.vim/bundle/ctrlp.vim
+    url    = https://github.com/kien/ctrlp.vim
+    branch = master
 
 [submodule "fzf"]
-    path = vim/.vim/bundle/fzf
-    url  = https://github.com/junegunn/fzf.vim
+    path   = vim/.vim/bundle/fzf
+    url    = https://github.com/junegunn/fzf.vim
+    branch = master
 
 [submodule "fzf.vim"]
-    path = vim/.vim/bundle/fzf.vim
-    url  = https://github.com/junegunn/fzf.vim
+    path   = vim/.vim/bundle/fzf.vim
+    url    = https://github.com/junegunn/fzf.vim
+    branch = master
 
 [submodule "nerdtree"]
-    path = vim/.vim/bundle/nerdtree
-    url  = https://github.com/scrooloose/nerdtree
+    path   = vim/.vim/bundle/nerdtree
+    url    = https://github.com/scrooloose/nerdtree
+    branch = master
 
 [submodule "nord-vim"]
-    path = vim/.vim/bundle/nord-vim
-    url  = https://github.com/arcticicestudio/nord-vim
+    path   = vim/.vim/bundle/nord-vim
+    url    = https://github.com/arcticicestudio/nord-vim
+    branch = master
 
 [submodule "vim-airline"]
-    path = vim/.vim/bundle/vim-airline
-    url  = https://github.com/vim-airline/vim-airline
+    path   = vim/.vim/bundle/vim-airline
+    url    = https://github.com/vim-airline/vim-airline
+    branch = master
 
 [submodule "vim-airline-themes"]
-    path = vim/.vim/bundle/vim-airline-themes
-    url  = https://github.com/vim-airline/vim-airline-themes
+    path   = vim/.vim/bundle/vim-airline-themes
+    url    = https://github.com/vim-airline/vim-airline-themes
+    branch = master
 
 [submodule "vim-better-whitespace"]
-    path = vim/.vim/bundle/vim-better-whitespace
-    url  = https://github.com/ntpeters/vim-better-whitespace
+    path   = vim/.vim/bundle/vim-better-whitespace
+    url    = https://github.com/ntpeters/vim-better-whitespace
+    branch = master
 
 [submodule "vim-fugitive"]
-    path = vim/.vim/bundle/vim-fugitive
-    url  = https://github.com/tpope/vim-fugitive
+    path   = vim/.vim/bundle/vim-fugitive
+    url    = https://github.com/tpope/vim-fugitive
+    branch = master
 
 [submodule "vim-gitbranch"]
-	path = vim/.vim/bundle/vim-gitbranch
-	url  = https://github.com/itchyny/vim-gitbranch
+	path   = vim/.vim/bundle/vim-gitbranch
+	url    = https://github.com/itchyny/vim-gitbranch
+    branch = master
 
 [submodule "vim-gitgutter"]
-    path = vim/.vim/bundle/vim-gitgutter
-    url  = https://github.com/airblade/vim-gitgutter
+    path   = vim/.vim/bundle/vim-gitgutter
+    url    = https://github.com/airblade/vim-gitgutter
+    branch = master
 
 [submodule "vim-multiple-cursors"]
-    path = vim/.vim/bundle/vim-multiple-cursors
-    url  = https://github.com/terryma/vim-multiple-cursors
+    path   = vim/.vim/bundle/vim-multiple-cursors
+    url    = https://github.com/terryma/vim-multiple-cursors
+    branch = master
 
 [submodule "vim-rubocop"]
-    path = vim/.vim/bundle/vim-rubocop
-    url  = https://github.com/ngmy/vim-rubocop
+    path   = vim/.vim/bundle/vim-rubocop
+    url    = https://github.com/ngmy/vim-rubocop
+    branch = master
 
 [submodule "vim-surround"]
-    path = vim/.vim/bundle/vim-surround
-    url  = https://github.com/tpope/vim-surround
+    path   = vim/.vim/bundle/vim-surround
+    url    = https://github.com/tpope/vim-surround
+    branch = master
 
 [submodule "Vundle.vim"]
-    path = vim/.vim/bundle/Vundle.vim
-    url  = https://github.com/VundleVim/Vundle.vim
+    path   = vim/.vim/bundle/Vundle.vim
+    url    = https://github.com/VundleVim/Vundle.vim
+    branch = master
