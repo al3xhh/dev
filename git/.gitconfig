@@ -1,8 +1,8 @@
 [pull]
   rebase = true
 [user]
-	email = ahuertas@opennebula.io
-	name = Alejandro Huertas
+	email      = ahuertas@opennebula.io
+	name       = Alejandro Huertas
 	signingkey = 85878F2E763782B7A75362433044AF06BE405104
 [alias]
 	st = status

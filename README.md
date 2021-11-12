@@ -1,16 +1,22 @@
 # DEV Environment
 
-Here you can find the configuration files for tools I use in my laptop for developing. They are mainly:
+This repository contains the configuration files for my development environment:
 
-- [Git](https://github.com/git/git)
-- [i3](https://i3wm.org/docs/userguide.html)
-- [Terminator](https://terminator-gtk3.readthedocs.io/en/latest/)
-- [VIM](https://github.com/vim/vim)
+#### Editor
 
-# Install
+- [VIM](https://github.com/vim/vim) -> vim
 
-```
-git clone https://github.com/al3xhh/dev.git --recursive
-cd dev
-./install.sh $(pwd)
-```
+#### Terminal
+
+- [Oh My Zsh](https://ohmyz.sh) -> zsh
+- [Terminator](https://terminator-gtk3.readthedocs.io/en/latest) -> terminator
+
+#### Version control tools
+
+- [Git](https://github.com/git/git) -> git
+
+#### Windows management
+
+- [i3](https://i3wm.org/docs/userguide.html) -> i3
+- [i3status](https://i3wm.org/docs/i3status.html) [DEPRECATED] -> i3status
+- [i3status-rust](https://github.com/greshake/i3status-rust) -> i3status-rust
