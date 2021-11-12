@@ -1,7 +1,3 @@
-# DEV Environment
-
-This repository contains the configuration files for my development environment:
-
 #### Editor
 
 - [VIM](https://github.com/vim/vim) -> vim
