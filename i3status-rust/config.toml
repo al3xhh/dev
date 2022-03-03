@@ -2,39 +2,33 @@
 # Theme configuration
 #-------------------------------------------------------------------------------
 [icons]
-name = "awesome"
+name = "awesome5"
 
 [theme]
-name = "slick"
+name = "nord-dark"
 
 [theme.overrides]
-idle_bg      = "#4C566A"
-idle_fg      = "#ECEFF4"
-#idle_bg     = "#2e3440" # nord0
-#idle_fg     = "#81a1c1" # light blue
-good_bg      = "#a3be86" # green
-good_fg      = "#2e3440" # nord0
-warning_bg   = "#ebcb8b" # yellow
-warning_fg   = "#2e3440" # nord0
-critical_bg  = "#bf616a" # red
-critical_fg  = "#2e3440" # nord0
-separator    = "\ue0b2"
-separator_bg = "auto"
-separator_fg = "auto"
+separator    = " | "
+separator_fg = "#81A1C1"
 
 #-------------------------------------------------------------------------------
 # Blocks
 #-------------------------------------------------------------------------------
+[[block]]
+block    = "custom"
+command  = "echo al3xhh"
+interval = "once"
+
 [[block]]
 block    = "net"
 device   = "wlp2s0"
 format   = "{ip} [{signal_strength}]"
 interval = 5
 
-[[block]]
-block    = "speedtest"
-interval = 1800
-format   = "{ping}{speed_down:4*B}"
+# [[block]]
+# block    = "speedtest"
+# interval = 1800
+# format   = "{ping}{speed_down:4*B}"
 
 [[block]]
 block     = "disk_space"
@@ -49,19 +43,27 @@ format    = "{icon} {available}"
 
 [[block]]
 block        = "memory"
-format_mem   = "{mem_used}/{mem_total}"
+# format_mem   = "{mem_used}/{mem_total}"
+format_mem   = "{mem_used}"
 display_type = "memory"
 icons        = true
 clickable    = false
 warning_mem  = 80
 critical_mem = 95
 
+# [[block]]
+# block    = "uptime"
+# interval = 1
+
 [[block]]
-block     = "temperature"
-collapsed = false
-interval  = 10
-format    = "{average}"
-chip      = "*-isa-*"
+block    = "custom"
+command  = "echo Bat0: $(cat /sys/class/power_supply/BAT0/capacity)%"
+interval = 10
+
+[[block]]
+block    = "custom"
+command  = "echo Mouse: $(solaar show | tail -n2 | head -n1 | cut -d ',' -f3 | cut -d '.' -f1)%"
+#interval = 60
 
 [[block]]
 block    = "time"
@@ -69,15 +71,8 @@ interval = 60
 format   = "%d/%m %R"
 
 [[block]]
-block    = "uptime"
-interval = 1
-
-[[block]]
-block    = "battery"
-interval = 10
-format   = "{percentage} {time}"
-
-[[block]]
-block    = "custom"
-command  = "echo al3xhh"
-interval = "once"
+block     = "temperature"
+collapsed = false
+interval  = 10
+format    = "{average}"
+chip      = "*-isa-*"

@@ -97,6 +97,10 @@ let g:NERDTreeWinPos = "left"
 let g:strip_whitespace_on_save = 0
 
 let g:ale_set_highlights = "ALEErrorLine"
+let g:ale_linters_explicit = 1
+let g:ale_linters = {
+      \ 'ruby': ['rubocop'],
+      \ }
 
 function! ToggleMouse()
     " check if mouse is enabled
