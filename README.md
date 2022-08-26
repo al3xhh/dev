@@ -16,3 +16,4 @@
 - [i3](https://i3wm.org/docs/userguide.html) -> i3
 - [i3status](https://i3wm.org/docs/i3status.html) [DEPRECATED] -> i3status
 - [i3status-rust](https://github.com/greshake/i3status-rust) -> i3status-rust
+- [TMUX](https://github.com/tmux/tmux) -> tmux
