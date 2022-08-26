@@ -14,7 +14,7 @@ set shiftround
 set backspace=indent,eol,start
 set autoindent
 set copyindent
-set colorcolumn=80
+set colorcolumn=100
 set nostartofline
 set spell spelllang=en_us
 
@@ -121,10 +121,7 @@ if has("autocmd")
   au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 endif
 
-let base16colorspace=256  " Access colors present in 256 colorspace
-set background=dark
 set t_Co=256
-set termguicolors
 set ignorecase
 set nospell!
-colorscheme base16-tomorrow-night
+colorscheme nord
