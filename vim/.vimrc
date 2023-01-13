@@ -37,6 +37,8 @@ call vundle#begin()
     Plugin 'ngmy/vim-rubocop'
     Plugin 'tpope/vim-surround'
     Plugin 'VundleVim/Vundle.vim'
+    Plugin 'Yggdroot/indentLine'
+    Plugin 'fatih/vim-go'
 call vundle#end()
 
 " Key maps
@@ -75,6 +77,10 @@ set laststatus=2
 if !exists('g:airline_symbols')
 	let g:airline_symbols = {}
 endif
+
+" YAML syntax
+autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+let g:indentLine_char = '⦙'
 
 " powerline symbols
 let g:airline_left_sep = ''

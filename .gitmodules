@@ -87,3 +87,6 @@
     path   = vim/.vim/bundle/Vundle.vim
     url    = https://github.com/VundleVim/Vundle.vim
     branch = master
+[submodule "vim/.vim/bundle/indentLine"]
+	path = vim/.vim/bundle/indentLine
+	url = https://github.com/Yggdroot/indentLine
