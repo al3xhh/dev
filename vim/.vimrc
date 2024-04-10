@@ -63,7 +63,17 @@ nnoremap <c-f>       :Ag<CR>
 "noremap <Left>  <NOP>
 "noremap <Right> <NOP>
 
-set pastetoggle =<F8>
+set pastetoggle =<F9>
+" set paste
+
+" Revamp switch between splits
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+
+" Open Nerdtree by defaul
+" autocmd VimEnter * NERDTree
 
 " Vim Airline
 " ==========================================
@@ -71,7 +81,7 @@ set pastetoggle =<F8>
 let g:airline#extensions#tabline#fnamemod = ':.'
 let g:airline#extensions#tabline#fnamecollapse = 0
 let g:airline#extensions#tabline#enabled = 1
-let g:airline_theme='base16'
+let g:airline_theme='nord'
 set laststatus=2
 
 if !exists('g:airline_symbols')
@@ -79,7 +89,7 @@ if !exists('g:airline_symbols')
 endif
 
 " YAML syntax
-autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+" autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 let g:indentLine_char = '⦙'
 
 " powerline symbols
