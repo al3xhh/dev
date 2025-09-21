@@ -38,7 +38,7 @@ call vundle#begin()
     Plugin 'tpope/vim-surround'
     Plugin 'VundleVim/Vundle.vim'
     Plugin 'Yggdroot/indentLine'
-    Plugin 'fatih/vim-go'
+    " Plugin 'fatih/vim-go'
 call vundle#end()
 
 " Key maps

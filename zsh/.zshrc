@@ -80,7 +80,7 @@ export GOPRIVATE=github.com/DataDog
 # END ANSIBLE MANAGED BLOCK
 export GITLAB_TOKEN=$(security find-generic-password -a ${USER} -s gitlab_token -w)
 
-export USE_BAZEL_VERSION=5.4.0
+#export USE_BAZEL_VERSION=5.4.0
 
 export KUBECONFIG=~/.kube/config
 
@@ -102,11 +102,11 @@ alias ls='ls --color=auto'
 alias tctl='tctx exec -- tctl'
 alias gofmt='wd source && bzl run @go_sdk//:bin/gofmt -- -w domains/adp/elasticsearch/apps/workers/elasticsearch/worker'
 alias codefmt='bzl run @go_sdk//:bin/gofmt -- -w'
-alias snap='wd source && bzl run //:snapshot -- //domains/adp/elasticsearch/apps/workers/...'
+alias snap='wd source && bzl run //:snapshot -- //domains/mars/apps/geminio/...'
 alias gaz='wd source && bzl run //:gazelle'
 alias wfpr='gaz && snap && gofmt'
 alias trainctl='wd source && tctx exec -- bzl run //domains/eee/apps/sdp/cmd/trainctl:trainctl'
-alias g='git'
+alias g='LANG=en_US.UTF git'
 #alias cd='z'
 
 source /Users/alejandro.huertas/.k8s_aliases.sh
@@ -182,3 +182,8 @@ alias kpp='k port-forward svc/proxy-orgstore-pitbull 5432 --namespace postgres-o
 
 # Rapid aliases
 eval "$(direnv hook zsh)"
+
+export LC_ALL=en_US.UTF-8
+export LC_CTYPE=en_US.UTF-8
+
+export JAVA_HOME=`/usr/libexec/java_home -v 17.0.12`
