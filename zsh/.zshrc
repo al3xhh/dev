@@ -18,8 +18,8 @@ source $ZSH/oh-my-zsh.sh
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 # google-cloud-sdk brew caveat
-source "/opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"
-source "/opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"
+# source "/opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"
+# source "/opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"
 
 # BEGIN ANSIBLE MANAGED BLOCK
 # Add homebrew binaries to the path.
@@ -137,7 +137,7 @@ command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
 
 export GPG_TTY=$(tty)
-source /Users/alejandro.huertas/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# source /Users/alejandro.huertas/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 if type brew &>/dev/null
 then
@@ -156,29 +156,9 @@ ssh-add -l > /dev/null || ssh-add --apple-load-keychain 2> /dev/null
 export M2_HOME="/Users/alejandro.huertas/bin/apache-maven-3.6.0"
 export PATH="${M2_HOME}/bin:${PATH}"
 
-# OrgStore alias
-kexec-kafka-stage() {
-  POD=$(kubectl get pod -l app=kafka-toolbox -o jsonpath='{.items[0].metadata.name}' --namespace kafka-orgstore-kafka-b132 --cluster gizmo.us1.staging.dog);
-  kubectl exec -it $POD --namespace kafka-orgstore-kafka-b132 --cluster gizmo.us1.staging.dog -- bash;
-}
-
-kexec-pg-pitbull() {
-  POD=$(kubectl get pod -l app=postgres-toolbox -o jsonpath='{.items[0].metadata.name}' --namespace postgres-orgstore-pitbull --cluster gizmo.us1.staging.dog);
-  kubectl exec -it $POD --namespace postgres-orgstore-pitbull --cluster gizmo.us1.staging.dog -- bash;
-}
-
-kexec-schema-registry() {
-  POD=$(kubectl get pod -l app.kubernetes.io/instance=orgstore-schema-registry -o jsonpath='{.items[0].metadata.name}' --namespace orgstore --cluster gizmo.us1.staging.dog);
-  kubectl exec -it $POD --namespace orgstore --cluster gizmo.us1.staging.dog -- bash;
-}
-
-# Useful aliases
-alias botquery='wd source && bzl query "kind(cnab_workflow, //domains/orgstore/apps/orgstorebot/config/k8s/...)"'
-alias apiquery='wd source &&  bzl query "kind(cnab_workflow, //domains/orgstore/apps/api/config/k8s/...)"'
-alias sinkquery='wd source &&  bzl query "kind(cnab_workflow, //domains/orgstore/apps/es-sink/config/k8s/...)"'
-alias debquery='wd source && bzl query "kind(cnab_workflow, //domains/orgstore/apps/debezium/config/k8s/...)"'
-alias esquery='wd k8s && bzl query "kind(cnab_workflow, //k8s/elasticsearch/...)"'
-alias kpp='k port-forward svc/proxy-orgstore-pitbull 5432 --namespace postgres-orgstore-pitbull --context gizmo.us1.staging.dog'
+# Employer-specific k8s aliases/functions are intentionally kept out of this
+# public repo and live in an untracked, machine-local file instead.
+[[ -f ~/.zshrc.work ]] && source ~/.zshrc.work
 
 # Rapid aliases
 eval "$(direnv hook zsh)"
