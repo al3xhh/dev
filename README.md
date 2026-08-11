@@ -20,6 +20,10 @@ _____  |  | \_____  \___  ___     |  |__ |  |__     __| _/_______  __
 
 - [Git](https://github.com/git/git) -> git
 
+#### AI tools
+
+- [Claude Code](https://claude.com/product/claude-code) -> claude
+
 #### Windows management
 
 - [i3](https://i3wm.org/docs/userguide.html) -> i3
