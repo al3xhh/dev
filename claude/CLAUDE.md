@@ -244,3 +244,53 @@ When implementing a feature or fix (not just exploring/reading), use
 `git worktree add` to create an isolated worktree rather than working
 directly on the current checkout — keeps the main checkout stable for
 other work and avoids collisions with in-progress branches.
+
+### Verify the worktree/branch before running a deploy command
+
+Before running any deploy-triggering command (`bzl run .../config/k8s:staging`,
+`:staging-fast`, or any other CNAB/Conductor workflow target), confirm the
+directory you're about to run it from is the worktree with the branch you
+actually mean to deploy — not the primary checkout, which is often sitting on
+`main` or a different, stale branch left over from earlier work in the
+session. Deploy commands build and push whatever code is on disk at
+invocation time, with no warning if that's the wrong branch — this
+previously caused a real incident: a deploy was run from the primary
+checkout (on `main`, pre-dating an open feature branch's fixes) instead of
+the feature branch's worktree, silently shipping old code/config that then
+crash-looped in a way that looked like a code bug but was actually just the
+wrong commit being deployed.
+
+Before every deploy command:
+1. `pwd` and `git branch --show-current` (or `git -C <dir> ...` if not
+   `cd`-ing) in the exact directory the command will run from — confirm both
+   match the worktree/branch you mean to deploy.
+2. `git log -1 --oneline` to confirm the expected commit is checked out,
+   especially right after pushing new commits from a *different* worktree in
+   the same session — it's easy to push from worktree A and then run the
+   deploy from worktree B (or the primary checkout) out of habit.
+
+If a deploy behaves unexpectedly (wrong config, stale behavior, an immediate
+crash right after a rollout that should have fixed something), re-verify
+which worktree/branch was actually used to build it before assuming the new
+code itself is broken.
+
+## Google Docs formatting
+
+Applies to every Google Doc/tab Claude creates or writes into via the
+`datadog-google-workspace` MCP tools, in any doc, unless that specific doc's
+own existing style clearly establishes something different. Confirmed by
+inspecting the actual paragraph/run styles of the "MDD-R-005" design doc
+(not just its named-style defaults, which are misleadingly Arial) —
+the doc's real, consistently-applied conventions are:
+
+- **Font**: Roboto for all text (title, headings, body). Use Roboto Mono
+  for inline code / code blocks specifically.
+- **Body text alignment**: JUSTIFIED, not left-aligned.
+- **Heading structure**: TITLE for the doc/section title, HEADING_1 for
+  top-level sections, using the named-style default sizes as-is (Title
+  26pt, Heading 1 20pt, Normal text 11pt) rather than manually overriding
+  font sizes.
+- Practically, when using `insert_markdown`: pass `font_family: "Roboto"`.
+  That param does **not** set alignment — follow up with
+  `update_paragraph_style` (`alignment: "JUSTIFIED"`) over the inserted
+  range, or `style_paragraphs_matching`, as a separate step every time.
