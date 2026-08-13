@@ -309,6 +309,18 @@ PR adds or edits a skill:
   mapped topic) — that distinction is what determines whether "other
   entries already work, so the dependency must already be satisfied" is a
   valid shortcut or a dangerous assumption.
+- **When a cheap status signal is ambiguous between two semantically
+  different states, check the more authoritative signal first — never
+  as a fallback branch reached only when the cheap signal is absent.**
+  E.g. a `replicas: 0` Deployment can mean either "never successfully
+  started" (blocked on a missing dependency) or "was active, then
+  deliberately stopped" (decommissioned) — these require opposite
+  responses (resume vs. leave alone). If a safe-default value (like the
+  `replicaCount: 0` pattern above) can land on `main` before its
+  dependency is confirmed, that ambiguity becomes reachable in
+  practice, not just hypothetical. Structure detection logic so the
+  authoritative check (does the dependency actually exist) runs before
+  the cheap one is interpreted, not nested inside one branch of it.
 
 ### Reviewing / addressing PR feedback
 - Address every open review comment — don't silently skip ones that seem
