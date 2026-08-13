@@ -1,5 +1,29 @@
 # Personal global instructions
 
+## How to update this file
+
+When adding a new rule/lesson to this file (whether asked to directly, or
+inferred from a correction/confirmation during a session):
+
+1. **Add the information** in the most specific relevant section — prefer
+   extending an existing section/list over creating a new top-level one
+   for a narrow addition, and link related content with cross-references
+   ("see X above/below") the same way the rest of the file does.
+2. **Read the whole file afterward**, not just the section touched — check
+   for contradictions with unrelated rules stated elsewhere (the same
+   discipline this file already asks for when editing any doc/instructions
+   file), verify cross-references still resolve in the right direction
+   after any reordering, and confirm the addition doesn't duplicate
+   something already covered nearby.
+3. **Commit and push** to this repo (`~/Documents/dev`, `claude/CLAUDE.md`
+   — `~/.claude/CLAUDE.md` is a symlink to it) so the change is backed up
+   and the working copy in `~/.claude/` stays live automatically.
+
+Don't skip step 2 just because the edit looks small — several edits this
+file has gone through were small individually but introduced a real
+contradiction or a stale cross-reference that only showed up on a full
+read.
+
 ## Freeing disk space without losing downloaded dependencies (Bazel repos)
 
 This applies to any large Bazel monorepo (e.g. dd-source) checked out on this
@@ -253,6 +277,20 @@ PR adds or edits a skill:
   skill-discovery convention) — `"Onboards..."`/`"Manages..."`, not
   `"Onboard..."`/`"Manage..."` — since the description field is what
   Claude matches against when selecting a skill.
+- **Quote any frontmatter string field that might ever contain a colon**
+  (`description`, `argument-hint`, etc.) — an unquoted YAML scalar breaks
+  parsing the moment a `key: value`-shaped colon appears inside it (e.g.
+  `description: Does X. Scope note: only for Y.` fails to parse; the
+  colon after "note" starts a new, invalid mapping key). Quoting is cheap
+  and makes the field robust against every future edit, not just today's
+  wording — don't rely on "there's no colon in it right now."
+- **When a resource can be provisioned but blocked partway through by a
+  real external gap** (e.g. everything but a credential Secret exists),
+  give that partial-progress state a name of its own (e.g.
+  `BLOCKED_ON_CREDENTIAL`) that a status check can detect and resume
+  from — don't let it collapse into "not onboarded" (which would restart
+  already-done work) or "failed" (which undersells that the skill did
+  everything it safely could).
 
 ### Reviewing / addressing PR feedback
 - Address every open review comment — don't silently skip ones that seem
