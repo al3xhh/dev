@@ -71,10 +71,12 @@ repo's own CLAUDE.md overrides it.
      (a) look for simplifications — dead code, needless abstraction,
      over-engineering — without dropping functionality, (b) confirm no
      existing behavior was lost or broken, and (c) explicitly check the
-     diff against the **Common review-round patterns** list below —
-     these are the recurring classes of P0/P1/P2 comments that cause
-     extra review rounds, so a self-check pass catches most of them
-     before a human/bot reviewer has to.
+     diff against the relevant **Common review-round patterns** list(s)
+     below — the general one always, plus the Claude Code skill-authoring
+     one if the diff includes a `SKILL.md`. These are the recurring
+     classes of P0/P1/P2 comments that cause extra review rounds, so a
+     self-check pass catches most of them before a human/bot reviewer has
+     to.
   3. Apply its actionable feedback (or explain why not), then re-run
      step 1 if the fix touched code, before opening/pushing.
 
@@ -186,6 +188,71 @@ review rounds — check the diff against these explicitly (in step 1 or
   from a ConfigMap, YAML file, etc.) — a malformed single entry should
   produce an actionable startup validation error, not a nil-pointer
   panic that crash-loops the pod.
+
+### Common review-round patterns when writing Claude Code skills
+
+A `SKILL.md` is a different artifact class from application code — check
+the diff against these in addition to the general list above, whenever the
+PR adds or edits a skill:
+
+- **Scope every action to the specific resource requested, never "any
+  real content."** When a shared file/installation can host multiple
+  logical resources (e.g. multiple collections' mappings in one values
+  file, multiple tenants in one config), state-detection and any
+  destructive/cleanup action must check for the *specific* requested
+  resource's own entry — never infer state from "the file has real
+  content" or "the deployment is running" in general, or a cleanup
+  action for one resource silently affects every other resource sharing
+  the same installation.
+- **Never let a skill declare a risky action "safe"/"verified" from a
+  coarse proxy signal alone.** Row/document counts matching, or a status
+  field reading `RUNNING`, are necessary but not sufficient — they can't
+  catch wrong content, a stalled-but-technically-running process, or a
+  subset of corrupted records. Either implement genuinely sufficient
+  verification (real lag/offset metrics, content-level checks), or
+  explicitly hand the "proceed anyway" decision to a human with the
+  coarse evidence disclosed — don't let the skill assert a stronger
+  conclusion than the evidence supports.
+- **Every credential/secret a skill's deployed artifact depends on needs
+  an explicit create-and-verify step, or an honest statement that none
+  exists.** If a step grants a role/permission but doesn't also provision
+  the resulting secret, and nothing else in the repo provisions it
+  automatically, don't leave it implicit — give the exact, *verified*
+  provisioning command, or say plainly this is a manual, non-self-serve
+  gap and have the skill check-and-stop rather than assume it'll
+  materialize before deploy.
+- **Audit `allowed-tools` against the skill's own body — don't
+  copy-paste a sibling's list.** Every command/tool actually invoked in
+  the body must be covered by an entry (including `Read`/`Write`/`Edit`
+  and `git` commands if the skill edits files or opens PRs), and every
+  entry should be exercised somewhere in the body — unused entries
+  inherited from another skill are dead weight and a discoverability/
+  security smell.
+- **`Bash` allowed-tools patterns match on literal command-string
+  prefix, not token order or intent.** `Bash(kubectl get -n foo-* *)`
+  matches `kubectl get -n foo-x pods`, but NOT `kubectl get pods -n
+  foo-x` — write every command in the body in the same argument order as
+  its matching pattern, and check by eye rather than assuming a
+  "logically equivalent" command will match.
+- **When a cleanup/decommission action's final state depends on a
+  condition, resolve the condition before taking any irreversible step
+  (merging a PR, deleting a resource) — never split the decision across
+  a merged step and a "follow-up."** If the correction requires editing
+  something already merged, the window in between is a real, live
+  inconsistent state, not just an intermediate step.
+- **Don't invent a plausible-sounding command/mechanism for a real
+  capability gap.** If research doesn't turn up an existing, verified
+  tool/workflow for a step (a secret sync, a lag query, an access
+  grant), say so explicitly and either use the one genuinely verified
+  alternative (e.g. an existing metric another skill in the same repo
+  already references) or have the skill stop and hand off to a human —
+  a specific-looking command that was never actually run is worse than
+  an honest "unresolved" note, since it fails silently later instead of
+  during review.
+- **Skill frontmatter `description` must be third person** (platform
+  skill-discovery convention) — `"Onboards..."`/`"Manages..."`, not
+  `"Onboard..."`/`"Manage..."` — since the description field is what
+  Claude matches against when selecting a skill.
 
 ### Reviewing / addressing PR feedback
 - Address every open review comment — don't silently skip ones that seem
