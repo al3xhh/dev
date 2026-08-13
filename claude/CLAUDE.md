@@ -321,6 +321,15 @@ PR adds or edits a skill:
   practice, not just hypothetical. Structure detection logic so the
   authoritative check (does the dependency actually exist) runs before
   the cheap one is interpreted, not nested inside one branch of it.
+- **For a multi-step resumable commit sequence (provision → grant →
+  enable), the source of truth for "which step ran" is the committed
+  config file, not the live runtime object.** A live Deployment/pod can
+  lag the config (not deployed yet), or reflect a stale prior config
+  (deploy hasn't picked up a just-merged change) — reading replica count
+  or pod state to decide "has the enablement step run" answers a
+  different question than "was the enablement commit merged." Check the
+  config file's own field first to resume at the right step; only use the
+  live object afterward, to confirm that config was actually applied.
 
 ### Reviewing / addressing PR feedback
 - Address every open review comment — don't silently skip ones that seem
