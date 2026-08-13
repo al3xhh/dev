@@ -290,7 +290,25 @@ PR adds or edits a skill:
   `BLOCKED_ON_CREDENTIAL`) that a status check can detect and resume
   from — don't let it collapse into "not onboarded" (which would restart
   already-done work) or "failed" (which undersells that the skill did
-  everything it safely could).
+  everything it safely could). And when detecting it depends on some
+  artifact (a config entry, a mapping) existing on disk, make sure the
+  step that writes that artifact actually runs *before* the step that can
+  block — checking a dependent condition (the blocking gap) ahead of the
+  thing your own detection logic depends on makes the state unreachable.
+- **Never commit an "enabled" config for a resource whose hard dependency
+  (a credential, a required external grant) isn't confirmed yet.** If a
+  step can't confirm a real prerequisite exists, commit the *safe default*
+  (e.g. `replicaCount: 0`) rather than the eventual target value, and
+  promote to the real value in a separate follow-up once confirmed — an
+  unconfirmed-but-"enabled" config sitting on `main` can get applied by a
+  totally unrelated future deploy of the same shared installation and fail
+  for reasons that invocation had nothing to do with. Before assuming a
+  toggle like this is safe to flip early, check whether the underlying
+  field is genuinely per-resource or actually shared/pod-wide across every
+  resource in that installation (e.g. one secret env var shared by every
+  mapped topic) — that distinction is what determines whether "other
+  entries already work, so the dependency must already be satisfied" is a
+  valid shortcut or a dangerous assumption.
 
 ### Reviewing / addressing PR feedback
 - Address every open review comment — don't silently skip ones that seem
