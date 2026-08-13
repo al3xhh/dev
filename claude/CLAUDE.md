@@ -194,7 +194,17 @@ review rounds — check the diff against these explicitly (in step 1 or
 - After fixing (or explaining why no fix is needed) reply directly on
   each comment thread explaining what was done.
 - Once a thread has been replied to and the fix is pushed, resolve/close
-  that review thread — don't leave addressed threads open.
+  that review thread — don't leave addressed threads open. This is a
+  separate action from replying: a `gh api .../pulls/<n>/comments -f
+  in_reply_to=<id>` reply does NOT mark the thread resolved by itself.
+  Resolve it explicitly via the GraphQL mutation, using the thread's
+  `thread_node_id` (the `PRRT_...` id, not the numeric comment id):
+  `gh api graphql -f query='mutation($id:ID!){resolveReviewThread(input:
+  {threadId:$id}){thread{isResolved}}}' -f id="<PRRT_...>"`. After a
+  push, re-fetch the thread list and check `resolved`/`outdated` per
+  thread before assuming replying was enough — some bots (e.g. Datadog
+  Autotest) auto-resolve on their own re-scan, but others don't, so verify
+  rather than assume either way.
 
 ### After the PR is merged
 - Confirm the merge (e.g. `gh pr view <n> --json state,mergedAt` or
