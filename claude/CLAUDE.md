@@ -205,6 +205,11 @@ review rounds — check the diff against these explicitly (in step 1 or
   thread before assuming replying was enough — some bots (e.g. Datadog
   Autotest) auto-resolve on their own re-scan, but others don't, so verify
   rather than assume either way.
+- Once every thread from the current round is resolved and the fixes are
+  pushed, comment `@datadog review` on the PR to trigger another Autotest
+  pass — don't wait for the next push to be the trigger; an explicit
+  re-review comment after a full round of fixes catches anything the
+  fixes themselves introduced or missed, before a human reviewer looks again.
 
 ### After the PR is merged
 - Confirm the merge (e.g. `gh pr view <n> --json state,mergedAt` or
