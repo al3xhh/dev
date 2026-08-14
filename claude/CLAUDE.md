@@ -212,6 +212,16 @@ review rounds — check the diff against these explicitly (in step 1 or
   from a ConfigMap, YAML file, etc.) — a malformed single entry should
   produce an actionable startup validation error, not a nil-pointer
   panic that crash-loops the pod.
+- **Keep code comments short and scannable — state the fact, not the
+  narrative.** A comment should read like documentation a developer or
+  agent encounters cold, not like a PR description or incident
+  retrospective: cut the "why we discovered this" story, specific
+  dates/incident references, and restated background already covered
+  by the surrounding code or commit message. One or two lines beats a
+  paragraph; if a comment needs multiple sentences to justify a
+  non-obvious choice, that's a signal to trim it to the one sentence
+  that actually matters for a future reader, not to keep the rest "for
+  context."
 
 ### Common review-round patterns when writing Claude Code skills
 
