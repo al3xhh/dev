@@ -414,6 +414,21 @@ When implementing a feature or fix (not just exploring/reading), use
 directly on the current checkout — keeps the main checkout stable for
 other work and avoids collisions with in-progress branches.
 
+### Pull the base branch before creating a worktree
+
+`git worktree add -b <branch> <path>` branches off whatever the local
+checkout's base branch currently points to — if that hasn't been fetched
+recently, the new branch (and its PR) silently starts hundreds or
+thousands of commits behind the real remote base. This showed up as a PR
+that "looked really old"/stale on GitHub despite a correct, intentional
+diff. Always `git fetch origin <base-branch>` (or `git pull`) in the base
+checkout immediately before `git worktree add`, not just at some earlier
+point in the session. If a PR is later found to be based on a stale
+commit, `git rebase origin/<base-branch>` in the worktree, re-run any
+generated/snapshot-file regeneration (don't trust a conflict-free rebase
+alone for auto-generated files — regenerate them fresh and diff), then
+`git push --force-with-lease`.
+
 ### Verify the worktree/branch before running a deploy command
 
 Before running any deploy-triggering command (`bzl run .../config/k8s:staging`,
