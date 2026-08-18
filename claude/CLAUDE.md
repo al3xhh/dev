@@ -116,6 +116,21 @@ repo's own CLAUDE.md overrides it.
   up → implement), break it into a **stack** of small PRs using
   Graphite (`gt`) rather than one large PR or a pile of independent
   PRs with manual merge-order coordination.
+- **Always create every PR in a stack with `gt create` (one call per
+  step, each run from the previous step's branch), never by manually
+  `git checkout -b`/`git worktree add -b`-ing each branch off
+  main/trunk by hand.** `gt create` sets the new branch's parent to
+  whatever's currently checked out, so the stack's actual git ancestry
+  matches the intended order automatically. Manual branch creation has
+  no such guarantee — it's easy to branch step 2 off main instead of
+  off step 1 without noticing, since both branches build and pass
+  tests fine in isolation. This happened on the MARS-6868
+  kafka-publisher stack (2026-08): PR 2 ("startup retry") was manually
+  branched off main instead of off PR 1 ("circuit breaker"), so PR 2
+  alone didn't inherit PR 1's readiness plumbing — surfacing later as
+  an Autotest P1 finding ("pod stays ready during startup retries")
+  that a real stack would have caught structurally, since gt would
+  have carried PR 1's changes into PR 2 from the start.
 - Typical flow: `gt create` for each logical step on top of the
   previous branch, `gt submit --stack` (or `gt stack submit`,
   depending on the installed `gt` version — check `gt --help` if
@@ -412,7 +427,13 @@ moves between repos that resolve under different accounts.
 When implementing a feature or fix (not just exploring/reading), use
 `git worktree add` to create an isolated worktree rather than working
 directly on the current checkout — keeps the main checkout stable for
-other work and avoids collisions with in-progress branches.
+other work and avoids collisions with in-progress branches. Exception:
+when the work is a **stack** of PRs, create the branches with
+`gt create` instead of `git worktree add -b` (see "Large changes —
+stack with Graphite instead of one big PR" above) — a single worktree
+checked out to whichever branch is the current stack tip is enough;
+juggling one worktree per stack step defeats `gt create`'s "branch off
+whatever's currently checked out" guarantee.
 
 ### Pull the base branch before creating a worktree
 
