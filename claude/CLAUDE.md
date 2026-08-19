@@ -236,7 +236,34 @@ review rounds — check the diff against these explicitly (in step 1 or
   paragraph; if a comment needs multiple sentences to justify a
   non-obvious choice, that's a signal to trim it to the one sentence
   that actually matters for a future reader, not to keep the rest "for
-  context."
+  context." This is easy to violate in the middle of a debugging/review
+  session, where the investigation narrative is fresh and feels worth
+  preserving — it isn't; that narrative belongs in the commit message
+  or PR description, not the comment. Concretely:
+  ```go
+  // BAD — restates the investigation, names a specific deploy/incident,
+  // justifies at paragraph length:
+  // isReady deliberately does NOT gate on the destination circuit
+  // breaker or consecutivePingFailures, even though both are tracked
+  // here and exported as metrics: with replicaCount 1 and no Service
+  // in front of this Deployment, the only thing readiness actually
+  // controls is rollout progression, and a destination outage affects
+  // every replica identically (old and new alike). Gating on it risks
+  // a new pod transiently reporting ready during the brief window
+  // before its own ping-failure count crosses the threshold... which
+  // is exactly what was observed in a real staging deploy of
+  // mars-multidogs against eu1.staging.dog on 2026-08-19.
+
+  // GOOD — one sentence, states the invariant, no narrative:
+  // Deliberately ignores destination health (breaker/ping failures):
+  // with 1 replica, gating readiness on it can let a rollout kill the
+  // last healthy pod during an outage that affects both pods equally.
+  ```
+  If a second reviewing agent is run before opening/pushing (see above),
+  have it explicitly check new/changed comments against this rule as
+  part of that pass — it's the review step most likely to catch this,
+  since the comment reads reasonably in isolation to whoever just wrote
+  it.
 
 ### Common review-round patterns when writing Claude Code skills
 
