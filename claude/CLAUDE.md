@@ -222,6 +222,49 @@ review rounds — check the diff against these explicitly (in step 1 or
   onto the same output key (e.g. two topics deriving the same table
   name). Silently overwriting one with the other is a data-loss bug
   that won't show up until production traffic exercises the collision.
+- **When the same logical resource is provisioned/configured across
+  multiple environments (DCs, clusters, tenants) in one batch, every
+  environment-derived field must be independently re-derived for each
+  one — never carried over by copy-pasting a sibling environment's
+  already-finished config as the starting point for the next.**
+  Confirmed as a real production incident: onboarding one Mongo cluster
+  to `mars-mongo-jdbc-sink` in 5 different prod datacenters produced 5
+  PRs that all shipped the identical (wrong) Kafka cluster, because
+  each new DC's values file was copy-pasted from the previous DC's
+  finished file and only the obviously-per-DC fields (k8s selector,
+  namespace) got updated — the less obviously-per-DC fields (Kafka
+  cluster/bootstrap servers, consumer group ID, target DB host)
+  silently carried over untouched. When reviewing this kind of batch
+  change, diff every environment-derived field across all files in the
+  batch, not just the ones that look DC-specific at a glance.
+- **A cross-environment "these must not match" check is only valid for
+  fields structurally guaranteed to differ — don't apply it as a
+  blanket rule to every field that's supposed to be re-derived per
+  environment (see previous bullet).** Some derived fields (e.g. an
+  environment-tier label that's legitimately `prod` in every production
+  DC) can coincidentally share the same value across siblings without
+  being wrong; a strict inequality check on those produces false
+  positives that train people to ignore the check. This recurred twice
+  on the same PR: a first fix correctly required a per-DC Kafka cluster
+  field to differ across sibling files, then over-generalized to "no
+  field should ever match another DC's file," which broke on a field
+  that's correctly identical across every prod DC. The right check for
+  a field that must be re-derived but can coincidentally match a
+  sibling is "was this actually derived from this environment's own
+  inputs," not "does it differ from every sibling."
+- **A shape-based type-inference heuristic — guessing a value's real
+  type from what it looks like, with no persisted type discriminator to
+  check against — needs its safety precondition stated explicitly and
+  verified against the real data before being enabled, not assumed safe
+  by analogy to a previous use.** E.g. reconstructing a Mongo `_id` as
+  an ObjectID when a string happens to parse as valid 24-hex-char hex,
+  falling back to a plain string otherwise: safe only if none of that
+  specific collection's genuine non-ObjectID ids could coincidentally be
+  24 hex characters. Document the exact ambiguity on the heuristic
+  itself (not just at the call site), and before enabling it for a new
+  resource, run the concrete check (e.g. a length/format distribution
+  query against the real data) rather than assuming a pattern that was
+  safe for a previous resource still holds.
 - **Validate individual elements of externally-sourced config
   collections defensively** (a nil/empty entry in a parsed list/map
   from a ConfigMap, YAML file, etc.) — a malformed single entry should
@@ -407,13 +450,33 @@ PR adds or edits a skill:
   re-review comment after a full round of fixes catches anything the
   fixes themselves introduced or missed, before a human reviewer looks again.
 
+### Pushing a fix directly to someone else's open PR
+
+When asked to fix an issue by pushing a commit directly onto someone
+else's open PR branch (not your own), leave a PR comment immediately
+after pushing summarizing what changed and why — they didn't request
+the change and have no other way to notice a new commit silently
+appended to their branch. Applies whether the fix was requested by
+them directly, or on their behalf by someone else (e.g. a teammate who
+spotted the issue and asked you to fix it).
+
 ### After the PR is merged
 - Confirm the merge (e.g. `gh pr view <n> --json state,mergedAt` or
   `gh pr status`) before cleaning anything up.
 - If the work was done in a `git worktree` (see **Use worktrees for
   implementation work** below), remove it: `git worktree remove
   <path>` (add `--force` only if it has no uncommitted changes worth
-  keeping — check `git status` in the worktree first).
+  keeping — check `git status` in the worktree first). If a
+  `bazel(...)` server is running against that worktree (check
+  `ps aux | grep 'bazel('` for a `--workspace_directory` matching its
+  path), stop it too — a plain `kill <pid>` is fine if the worktree is
+  already gone and you can no longer `cd` there to run a graceful
+  `bazel shutdown`. `git worktree remove` does not stop the server on
+  its own, leaving it running indefinitely against a now-nonexistent
+  workspace and holding its full-size output_base (tens of GB) until
+  someone happens to notice and clean it up manually (see **Freeing
+  disk space** above for reclaiming an output_base once its server is
+  stopped).
 - Delete the local feature branch once merged and no longer needed:
   `git branch -d <branch>` (from the main checkout, not the worktree
   being removed).
