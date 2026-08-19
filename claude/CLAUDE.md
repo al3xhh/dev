@@ -449,34 +449,34 @@ PR adds or edits a skill:
   pass — don't wait for the next push to be the trigger; an explicit
   re-review comment after a full round of fixes catches anything the
   fixes themselves introduced or missed, before a human reviewer looks again.
-
-### Pushing a fix directly to someone else's open PR
-
-When asked to fix an issue by pushing a commit directly onto someone
-else's open PR branch (not your own), leave a PR comment immediately
-after pushing summarizing what changed and why — they didn't request
-the change and have no other way to notice a new commit silently
-appended to their branch. Applies whether the fix was requested by
-them directly, or on their behalf by someone else (e.g. a teammate who
-spotted the issue and asked you to fix it).
+- When asked to fix an issue by pushing a commit directly onto someone
+  else's open PR branch (not your own), leave a PR comment immediately
+  after pushing summarizing what changed and why — they didn't request
+  the change and have no other way to notice a new commit silently
+  appended to their branch. Applies whether the fix was requested by
+  them directly, or on their behalf by someone else (e.g. a teammate
+  who spotted the issue and asked you to fix it).
 
 ### After the PR is merged
 - Confirm the merge (e.g. `gh pr view <n> --json state,mergedAt` or
   `gh pr status`) before cleaning anything up.
 - If the work was done in a `git worktree` (see **Use worktrees for
-  implementation work** below), remove it: `git worktree remove
-  <path>` (add `--force` only if it has no uncommitted changes worth
-  keeping — check `git status` in the worktree first). If a
-  `bazel(...)` server is running against that worktree (check
-  `ps aux | grep 'bazel('` for a `--workspace_directory` matching its
-  path), stop it too — a plain `kill <pid>` is fine if the worktree is
-  already gone and you can no longer `cd` there to run a graceful
-  `bazel shutdown`. `git worktree remove` does not stop the server on
-  its own, leaving it running indefinitely against a now-nonexistent
-  workspace and holding its full-size output_base (tens of GB) until
-  someone happens to notice and clean it up manually (see **Freeing
-  disk space** above for reclaiming an output_base once its server is
-  stopped).
+  implementation work** below), first check whether a `bazel(...)`
+  server is running against it: `ps aux | grep 'bazel('` shows each
+  live server's `--workspace_directory=`/`--output_base=` pair on the
+  same line, so either flag identifies it. If one is running, `cd`
+  into the worktree and run `bazel shutdown` for a clean stop *before*
+  removing the worktree — `git worktree remove` does not stop the
+  server on its own, and once the worktree directory is gone you can no
+  longer `cd` there for a graceful shutdown, only a plain `kill <pid>`
+  (safe specifically because the worktree — and so any legitimate user
+  of that server — no longer exists once removed). Left running, an
+  orphaned server holds its full-size output_base (tens of GB)
+  indefinitely until someone happens to notice and clean it up manually
+  (see **Freeing disk space** above for reclaiming an output_base once
+  its server is stopped). Then remove the worktree: `git worktree
+  remove <path>` (add `--force` only if it has no uncommitted changes
+  worth keeping — check `git status` in the worktree first).
 - Delete the local feature branch once merged and no longer needed:
   `git branch -d <branch>` (from the main checkout, not the worktree
   being removed).
