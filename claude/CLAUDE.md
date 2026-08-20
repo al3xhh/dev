@@ -596,3 +596,31 @@ the doc's real, consistently-applied conventions are:
   That param does **not** set alignment — follow up with
   `update_paragraph_style` (`alignment: "JUSTIFIED"`) over the inserted
   range, or `style_paragraphs_matching`, as a separate step every time.
+
+## Cost management
+
+Decided 2026-08-20 after investigating a real cost-tracking bug and
+comparing self-estimated vs. org-billed spend (see `~/.claude/
+statusline-tracking.sh`). Two of the four levers identified are config
+(`~/.claude/settings.json`: `effortLevel: "medium"` instead of `"high"`,
+`model: "sonnet"` instead of `"sonnet[1m]"`) — the other two are habits,
+codified here so they persist across sessions:
+
+- **Be selective about spawning subagents (Agent/Explore/Plan/Workflow).**
+  Each one is a full separate model invocation with its own token cost —
+  don't reach for one to answer something a quick, direct lookup (a single
+  `grep`/`Read`/`Bash` call) would settle just as well. Reserve subagents
+  for genuinely open-ended research, parallelizable independent work, or
+  protecting the main context window from a large result set — not as a
+  default first move for anything that touches more than one file.
+- **Don't let a single session run indefinitely once the work in it is
+  done.** A long-running session resends its whole (growing) context on
+  every turn — real, recurring cost, not just an efficiency nitpick. When
+  a piece of work is clearly finished and the next ask is unrelated, say so
+  and suggest starting fresh (`/clear` or a new session) rather than
+  silently continuing to pile unrelated context into the same one.
+
+These are deliberate capability/cost tradeoffs the user chose knowingly —
+don't revert to `effortLevel: "high"` or the `[1m]` context model for a
+specific hard task without saying so first; escalate per-task instead of
+changing the persistent default back.
