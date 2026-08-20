@@ -74,6 +74,9 @@ repo's own CLAUDE.md overrides it.
 - Commit messages: short and descriptive (a single focused summary line,
   not a changelog) — one commit per logical change, not one giant commit
   per review round.
+- **Do not add a `Co-Authored-By: Claude` trailer to any commit**, in any
+  repo — this overrides the tool's own default behavior of appending one.
+  The user wants commits authored as themselves only.
 - PR descriptions: short and easy to understand — a couple of sentences
   or a few bullets on what changed and why, not an exhaustive essay. Do
   not hard-wrap lines in the body (no manual line breaks mid-paragraph);
