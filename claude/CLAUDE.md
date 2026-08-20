@@ -102,9 +102,16 @@ repo's own CLAUDE.md overrides it.
      self-check pass catches most of them before a human/bot reviewer has
      to.
   3. Apply its actionable feedback (or explain why not), then re-run
-     step 1 if the fix touched code, before opening/pushing.
+     step 1 if the fix touched code.
+  4. Before actually running the commit/push, show the user a brief
+     summary of what changed and why, then use `AskUserQuestion` (not a
+     free-text question) with three options: **Yes, commit and push** /
+     **Stop, don't commit** / **Let's discuss first** — rather than
+     committing/pushing immediately. This applies to every commit/push,
+     not just the first one in a PR; each subsequent round of fixes gets
+     its own confirmation before it goes out.
 
-  Skip steps 2–3 only for trivial one-line/mechanical changes, or if
+  Skip steps 2–4 only for trivial one-line/mechanical changes, or if
   the user explicitly says to skip it for this task. Step 1 (build/
   test/format) is never skipped.
 
