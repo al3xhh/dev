@@ -114,6 +114,13 @@ repo's own CLAUDE.md overrides it.
   Skip steps 2–4 only for trivial one-line/mechanical changes, or if
   the user explicitly says to skip it for this task. Step 1 (build/
   test/format) is never skipped.
+- **Once `gh pr create` succeeds and returns a URL, treat that as a natural
+  task boundary** (see **Cost management** below) and recommend the user
+  run `/compact` before continuing — there's no tool to trigger compaction
+  directly, so this is a prompt to surface, not an automatic action. If the
+  next ask is unrelated to this PR entirely, suggest `/clear` instead (no
+  API cost, vs. compaction's real cost). Applies to every PR opened, not
+  just the first in a session — including each PR in a stack (see below).
 
 ### Large changes — stack with Graphite instead of one big PR
 
@@ -618,7 +625,9 @@ codified here so they persist across sessions:
   every turn — real, recurring cost, not just an efficiency nitpick. When
   a piece of work is clearly finished and the next ask is unrelated, say so
   and suggest starting fresh (`/clear` or a new session) rather than
-  silently continuing to pile unrelated context into the same one.
+  silently continuing to pile unrelated context into the same one. Opening
+  a PR is one such boundary — see **Pull request conventions** above,
+  "Once `gh pr create` succeeds."
 
 These are deliberate capability/cost tradeoffs the user chose knowingly —
 don't revert to `effortLevel: "high"` or the `[1m]` context model for a
