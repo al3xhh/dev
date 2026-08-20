@@ -89,8 +89,10 @@ repo's own CLAUDE.md overrides it.
      skipping or disabling the check. If a failure is a known
      environment limitation (see **CI failure triage** below) rather
      than a real bug, say so explicitly instead of silently ignoring it.
-  2. Send the diff to a second agent (via the Agent tool,
-     `subagent_type: code-reviewer` if available, otherwise
+  2. **Only for a big change** — roughly, a diff spanning multiple files
+     with real logic (not just config/docs/one-liners), or anything the
+     user flags as high-risk — send the diff to a second agent (via the
+     Agent tool, `subagent_type: code-reviewer` if available, otherwise
      `general-purpose`) for an independent review pass. Brief it to:
      (a) look for simplifications — dead code, needless abstraction,
      over-engineering — without dropping functionality, (b) confirm no
@@ -100,20 +102,24 @@ repo's own CLAUDE.md overrides it.
      one if the diff includes a `SKILL.md`. These are the recurring
      classes of P0/P1/P2 comments that cause extra review rounds, so a
      self-check pass catches most of them before a human/bot reviewer has
-     to.
-  3. Apply its actionable feedback (or explain why not), then re-run
-     step 1 if the fix touched code.
+     to. Decided 2026-08-20 (see **Cost management** below): this step is
+     a full extra agent invocation, so it's gated on size/risk rather than
+     run on every PR — for a small/medium change, skip straight to step 4.
+  3. If step 2 ran, apply its actionable feedback (or explain why not),
+     then re-run step 1 if the fix touched code.
   4. Before actually running the commit/push, show the user a brief
      summary of what changed and why, then use `AskUserQuestion` (not a
      free-text question) with three options: **Yes, commit and push** /
      **Stop, don't commit** / **Let's discuss first** — rather than
      committing/pushing immediately. This applies to every commit/push,
      not just the first one in a PR; each subsequent round of fixes gets
-     its own confirmation before it goes out.
+     its own confirmation before it goes out — this step is never skipped
+     for size/cost reasons, only step 2 is.
 
-  Skip steps 2–4 only for trivial one-line/mechanical changes, or if
-  the user explicitly says to skip it for this task. Step 1 (build/
-  test/format) is never skipped.
+  Step 1 (build/test/format) and step 4 (commit/push confirmation) are
+  never skipped. Step 2 (second-agent review) is skipped for small/medium
+  changes per the above, or if the user explicitly says to skip/run it
+  for this task overriding the default size call.
 - **Once `gh pr create` succeeds and returns a URL, treat that as a natural
   task boundary** (see **Cost management** below) and recommend the user
   run `/compact` before continuing — there's no tool to trigger compaction
@@ -628,6 +634,12 @@ codified here so they persist across sessions:
   silently continuing to pile unrelated context into the same one. Opening
   a PR is one such boundary — see **Pull request conventions** above,
   "Once `gh pr create` succeeds."
+- **Gate the second-agent PR review pass on change size/risk, not run it
+  on every PR.** See **Pull request conventions** above, "Before
+  submitting" step 2 — only spawn the independent review agent for a big
+  change (multiple files, real logic) or something flagged high-risk;
+  small/medium changes skip straight to the commit/push confirmation
+  step. Confirmed by the user 2026-08-20.
 
 These are deliberate capability/cost tradeoffs the user chose knowingly —
 don't revert to `effortLevel: "high"` or the `[1m]` context model for a
