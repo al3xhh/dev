@@ -641,6 +641,26 @@ codified here so they persist across sessions:
   small/medium changes skip straight to the commit/push confirmation
   step. Confirmed by the user 2026-08-20.
 
+### The statusline cost figures are Claude's own self-estimate, not real billed spend
+
+Confirmed 2026-08-20 by comparing `~/.claude/statusline-tracking.sh`'s
+rolling 30-day sum of `cost.total_cost_usd` ($2453.90) against the real
+Anthropic Cloud Cost Management spend for the same window ($1535.36) via
+the "AI CODING USAGE" Datadog dashboard (`z8z-8g5-6kc`) — the self-estimate
+runs ~60% above real billed cost, most likely because it under-credits
+prompt-cache-read discounts (this org's sessions resend a large, mostly-
+unchanged CLAUDE.md context every turn, exactly the case cache discounts
+exist for). The statusline now shows both figures: the raw self-estimate
+(labeled plainly, used for the $100/$180 warn/block threshold comparison
+since it's the conservative/inflated direction) and a `REAL_FACTOR`-scaled
+approximation (`× 0.625`, derived from that one comparison — re-derive
+periodically rather than trusting it indefinitely, since it can drift with
+usage patterns like context length or cache hit rate). For an authoritative
+number — not an approximation — query the dashboard directly rather than
+trusting either statusline figure. Don't "fix" the self-estimate to match
+billed cost by editing pricing tables etc. — that number comes from the
+Claude Code CLI itself, out of this repo's control.
+
 These are deliberate capability/cost tradeoffs the user chose knowingly —
 don't revert to `effortLevel: "high"` or the `[1m]` context model for a
 specific hard task without saying so first; escalate per-task instead of
