@@ -563,6 +563,25 @@ generated/snapshot-file regeneration (don't trust a conflict-free rebase
 alone for auto-generated files — regenerate them fresh and diff), then
 `git push --force-with-lease`.
 
+**The same staleness risk applies mid-session, not just at worktree
+creation** — a `git fetch`/pull done at the start of a long-running session
+does not stay valid for its whole duration, especially for a shared/actively
+edited file. Re-fetch `origin/<base-branch>` immediately before branching and
+starting edits, not just once earlier in the session. This bit on the
+`onboard-mongo-cluster` skill PR (`claude-marketplace`, 2026-08-20): a branch
+was created off a local `main` that had gone stale mid-session, and by the
+time the change was ready to commit, someone else had independently rewritten
+the same file upstream with equivalent-but-differently-structured content —
+producing real rebase conflicts instead of a clean fast-forward. Recovering
+required aborting the rebase, re-fetching, resetting the branch onto the
+fresh `origin/<base-branch>`, and re-applying only the pieces genuinely still
+missing rather than the whole original diff. If this happens anyway, prefer
+that recovery path (`git rebase --abort`, re-fetch, `git reset --hard
+origin/<base-branch>` on the feature branch, re-diff against the new content
+to find what's actually still missing) over forcing a manual conflict
+resolution between two independently-written implementations of the same
+idea.
+
 ### Verify the worktree/branch before running a deploy command
 
 Before running any deploy-triggering command (`bzl run .../config/k8s:staging`,
