@@ -449,6 +449,13 @@ PR adds or edits a skill:
   config file's own field first to resume at the right step; only use the
   live object afterward, to confirm that config was actually applied.
 
+### Reviewing someone else's PR
+- Use a strict two-phase review flow by default. First inspect the PR read-only and report the findings to the user; do not post comments, submit a review, react, resolve threads, or otherwise modify the PR during this phase.
+- Wait for the user to explicitly choose which findings to publish. Post only the selected findings, and leave every unselected finding private unless the user later asks for it.
+- Before reporting findings, inspect existing review threads so duplicate comments are not proposed as new findings. Clearly identify findings that were already raised, resolved without a fix, or remain open.
+- When asked to publish a finding, comment on the most specific relevant line when possible. Use concise, natural, collaborative language that sounds like the user rather than a formal audit report; explain the concrete risk and ask for the change without unnecessary headings, severity badges, or boilerplate.
+- Do not submit an overall approval, request-changes review, or summary comment unless the user explicitly asks for one.
+
 ### Reviewing / addressing PR feedback
 - Address every open review comment — don't silently skip ones that seem
   minor or debatable; if a suggested change is wrong or a false positive,
