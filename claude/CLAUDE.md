@@ -639,6 +639,43 @@ the doc's real, consistently-applied conventions are:
   `update_paragraph_style` (`alignment: "JUSTIFIED"`) over the inserted
   range, or `style_paragraphs_matching`, as a separate step every time.
 
+## On-call weekly Ops Review report
+
+When I'm on-call and ask for the week's pages summary or Ops Review page,
+produce it in the same format every week. Team-specific details (where the
+page lives, which channel and paging team to read, link templates) are in
+my private auto-memory, not here.
+
+- **If the week's page already exists** (often auto-generated and
+  incomplete), replace its content rather than creating a duplicate.
+- **What to include**: only the high-priority pages that were actually
+  worked on, plus anything I ask to include. Skip low-priority noise and
+  anything I ask to skip. Take root causes and actions from each page's
+  Slack thread, not guesswork.
+- **Structure**: one `Pages` section with one table per monitor, using the
+  monitor title without its datacenter prefix or group suffix:
+  - Header row: the monitor title, spanning all 3 columns.
+  - Row 2 labels: `Affected Clusters | Incident Links | Issue`.
+  - Row 4 labels: `Actions Taken | Resolution | Follow Up Tasks`.
+  - Affected Clusters: one per line, written as `cluster.kube_cluster.dc`
+    (or `cluster.dc` when the kube cluster isn't known).
+  - Incident Links: one link per page, with the full page title as the link
+    text, pointing at the paging tool's page.
+- **Voice**: impersonal, written as if I authored it. No "I", and no names
+  (mine or anyone else's). Actions Taken is a numbered list of plain steps.
+- **Keep it concise**:
+  - Issue: one short line per monitor; merge similar pages into one
+    sentence.
+  - Actions Taken: 1–3 short steps.
+  - Resolution: a few words ("Self-resolved.").
+  - Follow Up Tasks: only the main PR/Jira links, each with a 3–5 word
+    label, or "None.".
+  - Leave out Slack thread links, timestamps, record counts, WAL sizes and
+    side notes.
+- **Writing it**: use `updateConfluencePage` with `contentFormat: "html"`
+  (call `getContentFormatGuide` first). Markdown can't do the spanning
+  header row or numbered steps inside a cell.
+
 ## Cost management
 
 Decided 2026-08-20 after investigating a real cost-tracking bug and
